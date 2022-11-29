@@ -9,7 +9,8 @@ export const GlobalStyle = createGlobalStyle`
 
   :focus {
     outline: none;
-    box-shadow: 0 0 0 2px ${(props) => props.theme['purple-500']}
+    border: none;
+    box-shadow: 0 0 0 2px ${(props) => props.theme['yellow-900']}
   }
 
   body {
@@ -19,8 +20,13 @@ export const GlobalStyle = createGlobalStyle`
   }
 
   body, input, textarea, input {
-    font-family: ${(props) => props.theme.fontHeader};
-    font-weight: 800;
+    font-family: ${(props) => props.theme.fontBase};
+    font-weight: 400;
     font-size: ${(props) => props.theme.fontSize.base};
+  }
+
+  h1,h2,h3,h4,h5,h6 {
+    font-family: ${(props) => props.theme.fontHeader};
+    color: ${(props) => props.theme.colorBase.title}
   }
 `
