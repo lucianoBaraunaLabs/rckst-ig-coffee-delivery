@@ -10,14 +10,14 @@ export const ButtonSelectContainer = styled(Button).attrs({
 })<ButtonSelectStyles>`
   &.selected {
     ${({ theme }) => css`
-      background-color: ${theme['purple-100']};
-      border-color: ${theme['purple-500']};
+      background-color: ${theme.palette['purple-100']};
+      border-color: ${theme.palette['purple-500']};
 
       &:hover {
-        background-color: ${theme['purple-100']};
+        background-color: ${theme.palette['purple-100']};
 
         svg {
-          color: ${theme['purple-500']};
+          color: ${theme.palette['purple-500']};
         }
       }
     `}

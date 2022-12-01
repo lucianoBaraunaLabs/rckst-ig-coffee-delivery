@@ -10,21 +10,21 @@ const heplerButtonVariations = css`
   ${({ theme }) => css`
     gap: ${theme.spacing[2]};
     padding: ${theme.spacing[2]} ${theme.spacing[2.5]};
-    background: ${theme.colorBase.button};
-    color: ${theme.colorBase.text};
+    background: ${theme.palette.button};
+    color: ${theme.palette.text};
     font-family: ${theme.fontBase};
     font-weight: ${theme.fontWeight.regular};
 
     svg {
-      color: ${theme['purple-500']};
+      color: ${theme.palette['purple-500']};
     }
 
     &:hover {
-      color: ${theme.colorBase.subtitle};
-      background: ${theme.colorBase.hover};
+      color: ${theme.palette.subtitle};
+      background: ${theme.palette.hover};
 
       svg {
-        color: ${theme['purple-900']};
+        color: ${theme.palette['purple-900']};
       }
     }
   `}
@@ -46,13 +46,13 @@ const buttonVariations = {
 
 const BaseButton = styled.button<ButtonPropsStyles>`
   ${({ theme }) => css`
-    background: ${theme['yellow-500']};
+    background: ${theme.palette['yellow-500']};
     padding: ${theme.spacing[4]};
-    color: ${theme.white};
+    color: ${theme.palette.white};
     font-weight: ${theme.fontWeight.bold};
 
     &:hover {
-      background: ${theme['yellow-900']};
+      background: ${theme.palette['yellow-900']};
     }
   `}
 

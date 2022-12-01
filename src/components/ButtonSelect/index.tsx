@@ -6,7 +6,11 @@ interface ButtonSelectProps {
   onSelectButton: (selected: boolean) => void
 }
 
-export function ButtonSelect({ children, onSelectButton }: ButtonSelectProps) {
+export function ButtonSelect({
+  children,
+  onSelectButton,
+  ...props
+}: ButtonSelectProps) {
   const [selected, setSelected] = useState(false)
   const hasSelectedClass = selected ? 'selected' : ''
 
@@ -20,6 +24,7 @@ export function ButtonSelect({ children, onSelectButton }: ButtonSelectProps) {
       onClick={handleSelectClick}
       isSelected={selected}
       className={hasSelectedClass}
+      {...props}
     >
       {children}
     </ButtonSelectContainer>

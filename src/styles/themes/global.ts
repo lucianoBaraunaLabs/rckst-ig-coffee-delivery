@@ -9,12 +9,12 @@ export const GlobalStyle = createGlobalStyle`
 
   :focus {
     outline: none;
-    box-shadow: 0 0 0 2px ${(props) => props.theme['yellow-900']}
+    box-shadow: 0 0 0 2px ${(props) => props.theme.palette['yellow-900']}
   }
 
   body {
-    background: ${(props) => props.theme.colorBase.background};
-    color: ${(props) => props.theme.colorBase.text};
+    background: ${(props) => props.theme.palette.background};
+    color: ${(props) => props.theme.palette.text};
     -webkit-font-smoothing: antialiased;
   }
 
@@ -26,6 +26,6 @@ export const GlobalStyle = createGlobalStyle`
 
   h1,h2,h3,h4,h5,h6 {
     font-family: ${(props) => props.theme.fontHeader};
-    color: ${(props) => props.theme.colorBase.title}
+    color: ${(props) => props.theme.palette.title}
   }
 `
