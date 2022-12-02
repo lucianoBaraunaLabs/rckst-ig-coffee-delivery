@@ -28,4 +28,10 @@ export const GlobalStyle = createGlobalStyle`
     font-family: ${(props) => props.theme.fontHeader};
     color: ${(props) => props.theme.palette.title}
   }
+
+  .container {
+    margin-left: auto;
+    margin-right: auto;
+    max-width: 69.875rem;
+  }
 `
