@@ -9,8 +9,8 @@ interface HeaderProps {
 
 export function Header({ quantityItensCart }: HeaderProps) {
   return (
-    <HeaderContainer>
-      <Link to="/">
+    <HeaderContainer className="container">
+      <Link to="/" title="Voltar para a home">
         <img src={logoCafe} alt="Coffe Delivery" />
       </Link>
       <Infos>
@@ -18,9 +18,11 @@ export function Header({ quantityItensCart }: HeaderProps) {
           <MapPin weight="fill" />
           Niterói, RJ
         </Address>
-        <ButtonCart to="/checkout">
+        <ButtonCart to="/checkout" title="Ir para o checkout">
           <ShoppingCartSimple weight="fill" />
-          {quantityItensCart > 0 && <span>{quantityItensCart}</span>}
+          {quantityItensCart > 0 && (
+            <span title="Itens no carrinho">{quantityItensCart}</span>
+          )}
         </ButtonCart>
       </Infos>
     </HeaderContainer>

@@ -9,9 +9,6 @@ export const HeaderContainer = styled.header`
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-left: auto;
-  margin-right: auto;
-  max-width: 69.875rem;
 `
 
 const ButtonStyles = css`
