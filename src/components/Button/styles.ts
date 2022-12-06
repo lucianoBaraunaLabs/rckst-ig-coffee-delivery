@@ -1,6 +1,5 @@
 import { ButtonHTMLAttributes } from 'react'
 import styled, { css } from 'styled-components'
-
 export interface ButtonPropsStyles
   extends ButtonHTMLAttributes<HTMLButtonElement> {
   variation?: 'simple' | 'big'
