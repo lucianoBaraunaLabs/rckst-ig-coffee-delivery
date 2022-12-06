@@ -1,3 +1,5 @@
+import { Card } from '../../components/Card'
+
 export function Home() {
   return (
     <>
@@ -5,15 +7,11 @@ export function Home() {
         <header>banner aqui dentro</header>
         <section className="container">
           <h3>Nossos cafés</h3>
-          <article>
-            <p>Expresso Tradicional</p>
-            <span>tradicional</span>
-            <span>com leite</span>
-            <p>O tradicional café feito com água quente e grãos moídos</p>
-            <p>R$ 9,90</p>
-            <input type="number" min={1} />
-            <button>Adicionar ao carrinho</button>
-          </article>
+          <Card variation="row" />
+          <br />
+          <br />
+          <br />
+          <Card />
         </section>
       </main>
     </>

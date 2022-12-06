@@ -1,5 +1,5 @@
 import styled, { css } from 'styled-components'
-import { Button } from '../Button/Index'
+import { Button } from '../Button'
 
 export interface ButtonSelectStyles {
   isSelected: boolean

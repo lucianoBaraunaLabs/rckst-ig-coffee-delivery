@@ -32,8 +32,11 @@ export const defaultTheme = {
     48: '3rem',
   },
   fontWeight: {
+    /** 700 */
     bold: 700,
+    /** 400 */
     regular: 400,
+    /** 800 */
     extraBold: 800,
   },
   spacing: {
