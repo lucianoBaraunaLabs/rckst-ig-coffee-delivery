@@ -20,7 +20,7 @@ const ButtonStyles = css`
     padding: ${theme.spacing[2]};
 
     color: ${theme.palette['purple-900']};
-    border-radius: 6px;
+    border-radius: ${theme.borderRadius['1.5']};
 
     svg {
       color: var(--icon-color);
@@ -61,7 +61,7 @@ export const ButtonCart = styled(Link)`
       color: ${theme.palette.white};
       font-size: ${theme.fontSize[12]};
       font-weight: ${theme.fontWeight.bold};
-      border-radius: 9999px;
+      border-radius: ${theme.borderRadius.circle};
       width: ${theme.spacing[5]};
       height: ${theme.spacing[5]};
       top: calc(${theme.spacing[5]} / 2 * -1);

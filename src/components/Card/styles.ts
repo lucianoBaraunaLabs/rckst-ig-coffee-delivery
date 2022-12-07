@@ -35,7 +35,7 @@ export const List = styled.ul`
       font-size: ${theme.fontSize[10]};
     `}
 
-    border-radius: 100px;
+    border-radius: 6.250rem;
   }
 `
 export const Title = styled.h4`
@@ -88,7 +88,7 @@ export const ButtonIcrement = styled.div`
   ${({ theme }) => css`
     background-color: ${theme.palette.button};
     width: 4.5rem;
-    border-radius: 6px;
+    border-radius: ${theme.borderRadius['1.5']};
 
     button {
       display: inline-flex;
@@ -124,7 +124,8 @@ export const ButtonCart = styled(Link)`
   ${({ theme }) => css`
     background-color: ${theme.palette['purple-900']};
     padding: ${theme.spacing[2]};
-    border-radius: 6px;
+    border-radius: ${theme.borderRadius['1.5']};
+
     display: inline-flex;
 
     svg {
@@ -150,10 +151,10 @@ const CardContainerVariation = {
     ${({ theme }) => css`
       padding: ${theme.spacing[2]} ${theme.spacing[1]};
       gap: ${theme.spacing[5]};
+      border-radius: ${theme.borderRadius[0]};
     `}
     display: flex;
     align-items: center;
-    border-radius: 0;
 
     ${ImageContainer} {
       ${({ theme }) => css`

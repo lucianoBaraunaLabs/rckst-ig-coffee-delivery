@@ -87,11 +87,11 @@ export const HeroListIcon = styled.span<HeroListIconPropsStyles>`
       font-size: ${theme.fontSize[20]};
       color: ${theme.palette.white};
     }
+    border-radius: ${theme.borderRadius.circle};
   `};
   display: flex;
   align-items: center;
   justify-content: center;
-  border-radius: 999px;
   background-color: ${(props) => props.backgroundColor};
 `
 export const Products = styled.section`

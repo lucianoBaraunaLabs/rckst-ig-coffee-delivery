@@ -38,7 +38,7 @@ const buttonVariations = {
     ${({ theme }) => css`
       padding: ${theme.spacing[4]};
       font-size: ${theme.fontSize.base};
-      border-radius: 6px;
+      border-radius: ${theme.borderRadius['1.5']};
     `}
   `,
 }
@@ -49,6 +49,7 @@ const BaseButton = styled.button<ButtonPropsStyles>`
     padding: ${theme.spacing[4]};
     color: ${theme.palette.white};
     font-weight: ${theme.fontWeight.bold};
+    border-radius: ${theme.borderRadius['1.5']};
 
     &:hover {
       background: ${theme.palette['yellow-900']};
@@ -56,7 +57,6 @@ const BaseButton = styled.button<ButtonPropsStyles>`
   `}
 
   border: solid 1px transparent;
-  border-radius: 6px;
 
   &:hover {
     cursor: pointer;

@@ -39,6 +39,16 @@ export const defaultTheme = {
     /** 800 */
     extraBold: 800,
   },
+  borderRadius: {
+    /** 1px */
+    px: '1px',
+    /** 0px */
+    0: '0px',
+    /** 6px */
+    1.5: '0.375rem',
+    /** 9999px */
+    circle: '9999px',
+  },
   spacing: {
     /** 1px */
     px: '1px',
