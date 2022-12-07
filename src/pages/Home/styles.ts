@@ -94,3 +94,31 @@ export const HeroListIcon = styled.span<HeroListIconPropsStyles>`
   border-radius: 999px;
   background-color: ${(props) => props.backgroundColor};
 `
+export const Products = styled.section`
+  ${({ theme }) => css`
+    > h3 {
+      font-size: ${theme.fontSize[32]};
+      margin-bottom: ${theme.spacing[14]};
+    }
+  `};
+`
+
+export const ProductsList = styled.ul`
+  ${({ theme }) => css`
+    gap: ${theme.spacing[10]} ${theme.spacing[8]};
+    margin-bottom: ${theme.spacing[64]};
+
+    &::after,
+    > li {
+      flex: 1 1 calc(25% - ${theme.spacing[8]});
+      min-width: ${theme.spacing[60]};
+    }
+  `};
+  list-style: none;
+  display: flex;
+  flex-wrap: wrap;
+
+  &::after {
+    content: '';
+  }
+`

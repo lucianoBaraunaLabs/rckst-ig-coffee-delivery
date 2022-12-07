@@ -10,6 +10,8 @@ import {
   HeroListIcon,
   HeroSubTitle,
   HeroTitle,
+  Products,
+  ProductsList,
 } from './styles'
 import { useTheme } from 'styled-components'
 
@@ -61,10 +63,44 @@ export function Home() {
             </HeroImg>
           </HeroContainer>
         </Hero>
-        <section className="container">
+        <Products className="container">
           <h3>Nossos cafés</h3>
-          <Card />
-        </section>
+          <ProductsList>
+            <li>
+              <Card />
+            </li>
+            <li>
+              <Card />
+            </li>
+            <li>
+              <Card />
+            </li>
+            <li>
+              <Card />
+            </li>
+            <li>
+              <Card />
+            </li>
+            <li>
+              <Card />
+            </li>
+            <li>
+              <Card />
+            </li>
+            <li>
+              <Card />
+            </li>
+            <li>
+              <Card />
+            </li>
+            <li>
+              <Card />
+            </li>
+            <li>
+              <Card />
+            </li>
+          </ProductsList>
+        </Products>
       </main>
     </>
   )

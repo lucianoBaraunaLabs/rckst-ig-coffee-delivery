@@ -219,6 +219,10 @@ export const CardContainer = styled.article<CardPropStyles>`
     border-radius: ${theme.spacing['1.5']} ${theme.spacing[9]};
     padding-bottom: ${theme.spacing[5]};
     position: relative;
+
+    &:focus-within {
+      outline: solid 1px ${theme.palette['yellow-900']};
+    }
   `}
   ${(prop) => prop.variation && CardContainerVariation[prop.variation]}
 `
