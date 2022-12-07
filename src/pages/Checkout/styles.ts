@@ -1,4 +1,5 @@
 import styled, { css } from 'styled-components'
+import { ButtonSelectContainer } from '../../components/ButtonSelect/styles'
 
 export const CheckoutContainer = styled.main`
   display: grid;
@@ -20,7 +21,6 @@ export const CheckoutCompleteOrderFilds = styled.div`
   `}
   display: flex;
 `
-
 interface CheckoutCardPropsStyle {
   borderVariation?: 'card'
 }
@@ -42,4 +42,47 @@ export const CheckoutCard = styled.section<CheckoutCardPropsStyle>`
 
   ${(props) =>
     props.borderVariation && CheckoutBorderVariation[props.borderVariation]}
+`
+
+export const CheckoutCardHeader = styled.header`
+  ${({ theme }) => css`
+    gap: ${theme.spacing[2]};
+    margin-bottom: ${theme.spacing[8]};
+
+    svg {
+      font-size: ${theme.fontSize[22]};
+    }
+
+    h3 {
+      font-size: ${theme.fontSize.base};
+      font-family: ${theme.fontBase};
+      font-weight: ${theme.fontWeight.regular};
+      color: ${theme.palette.subtitle};
+      margin-bottom: ${theme.spacing['0.5']};
+    }
+
+    p {
+      font-size: ${theme.fontSize[14]};
+    }
+  `}
+
+  display: flex;
+`
+export const CheckoutListTypePayment = styled.ul`
+  ${({ theme }) => css`
+    gap: ${theme.spacing[3]};
+
+    ${ButtonSelectContainer} {
+      font-size: ${theme.fontSize[12]};
+      width: 100%;
+      text-align: center;
+    }
+  `}
+
+  display: flex;
+  list-style: none;
+
+  li {
+    flex: 1;
+  }
 `

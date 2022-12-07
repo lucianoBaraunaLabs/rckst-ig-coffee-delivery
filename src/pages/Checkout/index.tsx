@@ -1,12 +1,24 @@
-import { CurrencyDollar, MapPin } from 'phosphor-react'
+import {
+  Bank,
+  CreditCard,
+  CurrencyDollar,
+  MapPinLine,
+  Money,
+} from 'phosphor-react'
+import { useTheme } from 'styled-components'
+import { ButtonSelect } from '../../components/ButtonSelect'
 import {
   CheckoutAreaTitle,
   CheckoutCard,
+  CheckoutCardHeader,
   CheckoutCompleteOrderFilds,
   CheckoutContainer,
+  CheckoutListTypePayment,
 } from './styles'
 
 export function Checkout() {
+  const theme = useTheme()
+
   return (
     <CheckoutContainer className="container">
       <section>
@@ -16,19 +28,19 @@ export function Checkout() {
 
         <CheckoutCompleteOrderFilds>
           <CheckoutCard>
-            <header>
-              <MapPin />
+            <CheckoutCardHeader>
+              <MapPinLine color={theme.palette['yellow-900']} />
               <div>
                 <h3>Endereço de Entrega</h3>
                 <p>Informe o endereço onde deseja receber seu pedido</p>
               </div>
-            </header>
+            </CheckoutCardHeader>
             <p>campos do endereço aqui</p>
           </CheckoutCard>
 
           <CheckoutCard>
-            <header>
-              <CurrencyDollar />
+            <CheckoutCardHeader>
+              <CurrencyDollar color={theme.palette['purple-500']} />
               <div>
                 <h3>Pagamento</h3>
                 <p>
@@ -36,8 +48,27 @@ export function Checkout() {
                   pagar
                 </p>
               </div>
-            </header>
-            <p>campos do endereço aqui</p>
+            </CheckoutCardHeader>
+            <CheckoutListTypePayment>
+              <li>
+                <ButtonSelect onSelectButton={(e) => console.log(e)}>
+                  <CreditCard color="#8641be" />
+                  CARTÃO DE CRÉDITO
+                </ButtonSelect>
+              </li>
+              <li>
+                <ButtonSelect onSelectButton={(e) => console.log(e)}>
+                  <Bank color="#8641be" />
+                  CARTÃO DE DÉBITO
+                </ButtonSelect>
+              </li>
+              <li>
+                <ButtonSelect onSelectButton={(e) => console.log(e)}>
+                  <Money color="#8641be" />
+                  DINHEIRO
+                </ButtonSelect>
+              </li>
+            </CheckoutListTypePayment>
           </CheckoutCard>
         </CheckoutCompleteOrderFilds>
       </section>
