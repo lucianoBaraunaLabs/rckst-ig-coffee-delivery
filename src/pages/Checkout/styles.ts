@@ -86,3 +86,9 @@ export const CheckoutListTypePayment = styled.ul`
     flex: 1;
   }
 `
+
+export const CheckoutListCard = styled.ul`
+  display: flex;
+  flex-direction: column;
+  list-style: none;
+`
