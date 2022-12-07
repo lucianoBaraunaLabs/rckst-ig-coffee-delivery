@@ -46,6 +46,8 @@ export const defaultTheme = {
     0: '0px',
     /** 6px */
     1.5: '0.375rem',
+    /** 44px */
+    11: '2.75rem',
     /** 9999px */
     circle: '9999px',
   },

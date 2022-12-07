@@ -1,16 +1,21 @@
 import { CurrencyDollar, MapPin } from 'phosphor-react'
-import { CheckoutContainer } from './styles'
+import {
+  CheckoutAreaTitle,
+  CheckoutCard,
+  CheckoutCompleteOrderFilds,
+  CheckoutContainer,
+} from './styles'
 
 export function Checkout() {
   return (
     <CheckoutContainer className="container">
       <section>
         <header>
-          <h2>Complete seu pedido</h2>
+          <CheckoutAreaTitle>Complete seu pedido</CheckoutAreaTitle>
         </header>
 
-        <div>
-          <section>
+        <CheckoutCompleteOrderFilds>
+          <CheckoutCard>
             <header>
               <MapPin />
               <div>
@@ -19,9 +24,9 @@ export function Checkout() {
               </div>
             </header>
             <p>campos do endereço aqui</p>
-          </section>
+          </CheckoutCard>
 
-          <section>
+          <CheckoutCard>
             <header>
               <CurrencyDollar />
               <div>
@@ -33,13 +38,16 @@ export function Checkout() {
               </div>
             </header>
             <p>campos do endereço aqui</p>
-          </section>
-        </div>
+          </CheckoutCard>
+        </CheckoutCompleteOrderFilds>
       </section>
       <aside>
         <header>
-          <h2>Cafés selecionados</h2>
+          <CheckoutAreaTitle>Cafés selecionados</CheckoutAreaTitle>
         </header>
+        <CheckoutCard as="div" borderVariation="card">
+          <p>conteúdo do pedido</p>
+        </CheckoutCard>
       </aside>
     </CheckoutContainer>
   )
