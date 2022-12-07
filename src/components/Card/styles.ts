@@ -173,6 +173,15 @@ const CardContainerVariation = {
       flex: 1;
     }
 
+    ${Title} {
+      ${({ theme }) => css`
+        font-family: ${theme.fontBase};
+        font-size: ${theme.fontSize.base};
+        font-weight: ${theme.fontWeight.regular};
+        /* line-height: 1; */
+      `}
+    }
+
     ${Controls} {
       justify-content: flex-start;
       flex-wrap: wrap;
@@ -189,6 +198,7 @@ const CardContainerVariation = {
 
     ${Footer} {
       align-self: flex-start;
+      padding-top: ${({ theme }) => theme.spacing[1]};
     }
 
     ${Price} {
