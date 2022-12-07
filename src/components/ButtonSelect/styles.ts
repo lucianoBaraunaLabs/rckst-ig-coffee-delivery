@@ -8,6 +8,8 @@ export interface ButtonSelectStyles {
 export const ButtonSelectContainer = styled(Button).attrs({
   variation: 'big',
 })<ButtonSelectStyles>`
+  align-items: center;
+
   &.selected {
     ${({ theme }) => css`
       background-color: ${theme.palette['purple-100']};
