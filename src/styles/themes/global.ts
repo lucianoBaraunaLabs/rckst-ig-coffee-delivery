@@ -33,5 +33,7 @@ export const GlobalStyle = createGlobalStyle`
     margin-left: auto;
     margin-right: auto;
     max-width: 69.875rem;
+    padding-left: ${({ theme }) => theme.spacing[4]} ;
+    padding-right: ${({ theme }) => theme.spacing[4]} ;
   }
 `
