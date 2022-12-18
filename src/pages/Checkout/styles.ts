@@ -43,7 +43,6 @@ export const CheckoutCard = styled.section<CheckoutCardPropsStyle>`
   ${(props) =>
     props.borderVariation && CheckoutBorderVariation[props.borderVariation]}
 `
-
 export const CheckoutCardHeader = styled.header`
   ${({ theme }) => css`
     gap: ${theme.spacing[2]};
@@ -86,9 +85,77 @@ export const CheckoutListTypePayment = styled.ul`
     flex: 1;
   }
 `
-
 export const CheckoutListCard = styled.ul`
   display: flex;
   flex-direction: column;
   list-style: none;
+`
+export const CheckoutInput = styled.div`
+  ${({ theme }) => css`
+    border: 1px solid ${theme.palette.button};
+    border-radius: ${theme.borderRadius['1.5']};
+    background: ${theme.palette.input};
+
+    input,
+    label,
+    span {
+      padding: ${theme.spacing[3]};
+    }
+
+    label,
+    span {
+      color: ${theme.palette.label};
+    }
+  `}
+
+  display: flex;
+  align-items: center;
+  position: relative;
+
+  label {
+    position: absolute;
+  }
+
+  input {
+    ${({ theme }) => css`
+      color: ${theme.palette.text};
+      font-size: ${theme.fontSize[14]};
+    `}
+
+    border: none;
+    background: transparent;
+    width: 100%;
+
+    &:focus {
+      box-shadow: none;
+    }
+
+    &::placeholder {
+      visibility: hidden;
+    }
+
+    // campo preenchido
+    &:not(:placeholder-shown) {
+      & + label {
+        visibility: hidden;
+      }
+    }
+  }
+
+  span {
+    ${({ theme }) => css`
+      font-size: ${theme.fontSize[12]};
+    `}
+
+    right: 0;
+    font-style: italic;
+  }
+
+  &:focus-within {
+    box-shadow: inset 0 0 0 1px red;
+
+    label {
+      visibility: hidden;
+    }
+  }
 `

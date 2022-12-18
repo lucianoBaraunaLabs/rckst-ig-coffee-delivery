@@ -17,6 +17,7 @@ import {
   CheckoutContainer,
   CheckoutListCard,
   CheckoutListTypePayment,
+  CheckoutInput,
 } from './styles'
 
 export function Checkout() {
@@ -38,7 +39,25 @@ export function Checkout() {
                 <p>Informe o endereço onde deseja receber seu pedido</p>
               </div>
             </CheckoutCardHeader>
-            <p>campos do endereço aqui</p>
+            <CheckoutInput>
+              <input type="text" id="nome" placeholder="dadad" />
+              <label htmlFor="nome">Nome</label>
+            </CheckoutInput>{' '}
+            <CheckoutInput>
+              <input type="text" id="teste1" placeholder="dada" />
+              <label htmlFor="teste1">teste1</label>
+              <span>Opcional</span>
+            </CheckoutInput>
+            <CheckoutInput>
+              <input
+                type="text"
+                id="teste2"
+                value="Jujuba"
+                placeholder="dadad"
+              />
+              <label htmlFor="teste2">teste2</label>
+              <span>Opcional</span>
+            </CheckoutInput>
           </CheckoutCard>
 
           <CheckoutCard>
