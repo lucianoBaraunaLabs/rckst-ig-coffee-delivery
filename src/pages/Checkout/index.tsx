@@ -6,7 +6,6 @@ import {
   Money,
 } from 'phosphor-react'
 import { useTheme } from 'styled-components'
-import { Button } from '../../components/Button'
 import { ButtonSelect } from '../../components/ButtonSelect'
 import { Card } from '../../components/Card'
 import {
@@ -18,6 +17,10 @@ import {
   CheckoutListCard,
   CheckoutListTypePayment,
   CheckoutInput,
+  ListCardItem,
+  CheckoutListTotal,
+  ListTotalItem,
+  ButtonConfirm,
 } from './styles'
 
 export function Checkout() {
@@ -101,17 +104,33 @@ export function Checkout() {
         </header>
         <CheckoutCard as="div" borderVariation="card">
           <CheckoutListCard>
-            <li>
+            <ListCardItem>
               <Card variation="row" />
-            </li>
-            <li>
+            </ListCardItem>
+            <ListCardItem>
               <Card variation="row" />
-            </li>
+            </ListCardItem>
           </CheckoutListCard>
-          <div>
-            <p>total de itens</p>
-          </div>
-          <Button>CONFIRMAR PEDIDO</Button>
+
+          <CheckoutListTotal>
+            <li>
+              <ListTotalItem>
+                Total de itens <span>R$ 29,70</span>
+              </ListTotalItem>
+            </li>
+            <li>
+              <ListTotalItem>
+                Entrega <span>R$ 29,70</span>
+              </ListTotalItem>
+            </li>
+            <li>
+              <ListTotalItem big>
+                Total <span>R$ 29,70</span>
+              </ListTotalItem>
+            </li>
+          </CheckoutListTotal>
+
+          <ButtonConfirm>CONFIRMAR PEDIDO</ButtonConfirm>
         </CheckoutCard>
       </aside>
     </CheckoutContainer>
