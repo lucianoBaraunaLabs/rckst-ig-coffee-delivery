@@ -5,6 +5,7 @@ import {
   MapPinLine,
   Money,
 } from 'phosphor-react'
+import { useNavigate } from 'react-router-dom'
 import { useTheme } from 'styled-components'
 import { ButtonSelect } from '../../components/ButtonSelect'
 import { Card } from '../../components/Card'
@@ -25,6 +26,11 @@ import {
 
 export function Checkout() {
   const theme = useTheme()
+  const navigate = useNavigate()
+
+  function handleToSuccess() {
+    navigate('/success')
+  }
 
   return (
     <CheckoutContainer className="container">
@@ -130,7 +136,9 @@ export function Checkout() {
             </li>
           </CheckoutListTotal>
 
-          <ButtonConfirm>CONFIRMAR PEDIDO</ButtonConfirm>
+          <ButtonConfirm onClick={handleToSuccess}>
+            CONFIRMAR PEDIDO
+          </ButtonConfirm>
         </CheckoutCard>
       </aside>
     </CheckoutContainer>
