@@ -75,25 +75,6 @@ export const HeroList = styled.ul`
   }
 `
 
-interface HeroListIconPropsStyles {
-  backgroundColor: string
-}
-
-export const HeroListIcon = styled.span<HeroListIconPropsStyles>`
-  ${({ theme }) => css`
-    padding: ${theme.spacing['3.5']};
-
-    svg {
-      font-size: ${theme.fontSize[20]};
-      color: ${theme.palette.white};
-    }
-    border-radius: ${theme.borderRadius.circle};
-  `};
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background-color: ${(props) => props.backgroundColor};
-`
 export const Products = styled.section`
   ${({ theme }) => css`
     > h3 {

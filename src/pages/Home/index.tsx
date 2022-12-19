@@ -7,13 +7,13 @@ import {
   HeroContent,
   HeroImg,
   HeroList,
-  HeroListIcon,
   HeroSubTitle,
   HeroTitle,
   Products,
   ProductsList,
 } from './styles'
 import { useTheme } from 'styled-components'
+import { IconCircle } from '../../components/IconCircle'
 
 export function Home() {
   const theme = useTheme()
@@ -33,27 +33,31 @@ export function Home() {
               </HeroSubTitle>
               <HeroList>
                 <li>
-                  <HeroListIcon backgroundColor={theme.palette['yellow-900']}>
-                    <ShoppingCart weight="fill" />
-                  </HeroListIcon>
+                  <IconCircle
+                    customColor={theme.palette['yellow-900']}
+                    icon={<ShoppingCart weight="fill" />}
+                  />
                   <p>Compra simples e segura</p>
                 </li>
                 <li>
-                  <HeroListIcon backgroundColor={theme.palette['yellow-500']}>
-                    <Timer weight="fill" />
-                  </HeroListIcon>
+                  <IconCircle
+                    customColor={theme.palette['yellow-500']}
+                    icon={<Timer weight="fill" />}
+                  />
                   <p>Entrega rápida e rastreada</p>
                 </li>
                 <li>
-                  <HeroListIcon backgroundColor={theme.palette.text}>
-                    <Package weight="fill" />
-                  </HeroListIcon>
+                  <IconCircle
+                    customColor={theme.palette.text}
+                    icon={<Package weight="fill" />}
+                  />
                   <p>Embalagem mantém o café intacto</p>
                 </li>
                 <li>
-                  <HeroListIcon backgroundColor={theme.palette['purple-500']}>
-                    <Coffee weight="fill" />
-                  </HeroListIcon>
+                  <IconCircle
+                    customColor={theme.palette['purple-500']}
+                    icon={<Coffee weight="fill" />}
+                  />
                   <p>O café chega fresquinho até você</p>
                 </li>
               </HeroList>
