@@ -15,8 +15,11 @@ import {
 import { useTheme } from 'styled-components'
 import { IconCircle } from '../../components/IconCircle'
 
+import dataProducts from '../../assets/produtos/products.json'
+
 export function Home() {
   const theme = useTheme()
+  console.log(dataProducts)
 
   return (
     <>
@@ -70,39 +73,13 @@ export function Home() {
         <Products className="container">
           <h3>Nossos cafés</h3>
           <ProductsList>
-            <li>
-              <Card />
-            </li>
-            <li>
-              <Card />
-            </li>
-            <li>
-              <Card />
-            </li>
-            <li>
-              <Card />
-            </li>
-            <li>
-              <Card />
-            </li>
-            <li>
-              <Card />
-            </li>
-            <li>
-              <Card />
-            </li>
-            <li>
-              <Card />
-            </li>
-            <li>
-              <Card />
-            </li>
-            <li>
-              <Card />
-            </li>
-            <li>
-              <Card />
-            </li>
+            {dataProducts.map((product) => {
+              return (
+                <li key={product.id}>
+                  <Card dataProduct={product} />
+                </li>
+              )
+            })}
           </ProductsList>
         </Products>
       </main>

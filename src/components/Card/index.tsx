@@ -1,5 +1,4 @@
 import { Minus, Plus, ShoppingCartSimple, Trash } from 'phosphor-react'
-import imgCafe from '../../assets/produtos/cafe-arabe.png'
 import {
   CardContainer,
   ImageContainer,
@@ -16,32 +15,38 @@ import {
   ButtonRemove,
 } from './styles'
 
-interface CardProps extends CardPropStyles {}
+interface CardProps extends CardPropStyles {
+  dataProduct: {
+    id: string
+    name: string
+    tags: string[]
+    description: string
+    value: number
+    img: string
+  }
+}
 
-export function Card({ variation = 'card' }: CardProps) {
+export function Card({ variation = 'card', dataProduct }: CardProps) {
   const isVariationCard = variation !== 'row'
   const isVariationRow = variation === 'row'
-
   return (
     <CardContainer variation={variation}>
       <ImageContainer>
-        <img src={imgCafe} alt="" />
+        <img src={`./src/assets/produtos/${dataProduct.img}`} alt="" />
       </ImageContainer>
 
       <InfoContainer>
         {isVariationCard && (
           <List>
-            <li>tradicional</li>
-            <li>com leite</li>
-            <li>com leite</li>
+            {dataProduct.tags.map((tagValue) => {
+              return <li key={`${dataProduct.id}_${tagValue}`}>{tagValue}</li>
+            })}
           </List>
         )}
 
-        <Title>Expresso Tradicional</Title>
+        <Title>{dataProduct.name}</Title>
 
-        {isVariationCard && (
-          <Text>O tradicional café feito com água quente e grãos moídos</Text>
-        )}
+        {isVariationCard && <Text>{dataProduct.description}</Text>}
 
         {isVariationRow && (
           <Controls>
@@ -69,7 +74,7 @@ export function Card({ variation = 'card' }: CardProps) {
 
       <Footer>
         <Price>
-          <span>R$</span> 9,90
+          <span>R$</span> {dataProduct.value}
         </Price>
         {isVariationCard && (
           <Controls>

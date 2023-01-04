@@ -36,6 +36,7 @@ export const List = styled.ul`
     `}
 
     border-radius: 6.250rem;
+    text-transform: uppercase;
   }
 `
 export const Title = styled.h4`
