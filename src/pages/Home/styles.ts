@@ -9,7 +9,7 @@ export const Hero = styled.header`
   `}
   background-image: url(${imgBannerBackground});
 
-  @media (min-width: 900px) {
+  @media (min-width: 56.25rem) {
     background-size: cover;
   }
 `
@@ -21,7 +21,7 @@ export const HeroContainer = styled.div`
   display: grid;
   align-items: center;
 
-  @media (min-width: 900px) {
+  @media (min-width: 56.25rem) {
     grid-template-columns: 1fr minmax(80px, 30.37rem);
     height: 34rem;
   }
