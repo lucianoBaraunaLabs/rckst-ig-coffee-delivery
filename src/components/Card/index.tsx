@@ -1,4 +1,5 @@
-import { Minus, Plus, ShoppingCartSimple, Trash } from 'phosphor-react'
+import { ShoppingCartSimple, Trash } from 'phosphor-react'
+import { useState } from 'react'
 import {
   CardContainer,
   ImageContainer,
@@ -10,10 +11,11 @@ import {
   ButtonCart,
   Footer,
   Controls,
-  ButtonIcrement,
   CardPropStyles,
   ButtonRemove,
 } from './styles'
+
+import { InputQuantity } from '../InputQuantity'
 
 interface CardProps extends CardPropStyles {
   dataProduct: {
@@ -27,8 +29,17 @@ interface CardProps extends CardPropStyles {
 }
 
 export function Card({ variation = 'card', dataProduct }: CardProps) {
+  const [quantyItem, setQuantyItem] = useState(0)
   const isVariationCard = variation !== 'row'
   const isVariationRow = variation === 'row'
+
+  function handleDecrementItem() {
+    setQuantyItem((prevState) => --prevState)
+  }
+  function handleIncrementItem() {
+    setQuantyItem((prevState) => ++prevState)
+  }
+
   return (
     <CardContainer variation={variation}>
       <ImageContainer>
@@ -50,21 +61,12 @@ export function Card({ variation = 'card', dataProduct }: CardProps) {
 
         {isVariationRow && (
           <Controls>
-            <ButtonIcrement>
-              <button>
-                <Minus />
-              </button>
-              <input
-                type="number"
-                id="quantity"
-                name="quantity"
-                min="1"
-                value={1}
-              />
-              <button>
-                <Plus />
-              </button>
-            </ButtonIcrement>
+            <InputQuantity
+              onDecrement={handleDecrementItem}
+              onIncrement={handleIncrementItem}
+              disableDecrement={quantyItem <= 0}
+              quantity={quantyItem}
+            />
             <ButtonRemove variation="simple">
               <Trash size="1rem" /> REMOVER
             </ButtonRemove>
@@ -77,22 +79,13 @@ export function Card({ variation = 'card', dataProduct }: CardProps) {
           <span>R$</span> {dataProduct.value}
         </Price>
         {isVariationCard && (
-          <Controls>
-            <ButtonIcrement>
-              <button>
-                <Minus />
-              </button>
-              <input
-                type="number"
-                id="quantity"
-                name="quantity"
-                min="1"
-                value={1}
-              />
-              <button>
-                <Plus />
-              </button>
-            </ButtonIcrement>
+          <Controls as="div">
+            <InputQuantity
+              onDecrement={handleDecrementItem}
+              onIncrement={handleIncrementItem}
+              disableDecrement={quantyItem <= 0}
+              quantity={quantyItem}
+            />
             <ButtonCart to="/checkout" title="Ir para o checkout">
               <ShoppingCartSimple weight="fill" />
             </ButtonCart>
