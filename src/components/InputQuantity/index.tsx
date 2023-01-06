@@ -19,7 +19,13 @@ export function InputQuantity({
       <button onClick={onDecrement} disabled={disableDecrement}>
         <Minus />
       </button>
-      <input type="number" id="quantity" name="quantity" value={quantity} />
+      <input
+        type="number"
+        id="quantity"
+        name="quantity"
+        value={quantity}
+        readOnly
+      />
       <button onClick={onIncrement}>
         <Plus />
       </button>
