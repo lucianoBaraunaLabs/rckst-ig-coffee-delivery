@@ -4,28 +4,20 @@ import { Minus, Plus } from 'phosphor-react'
 interface InputQuantityProps {
   onDecrement: () => void
   onIncrement: () => void
-  disableDecrement: boolean
   quantity: number
 }
 
 export function InputQuantity({
   onDecrement,
   onIncrement,
-  disableDecrement,
   quantity,
 }: InputQuantityProps) {
   return (
     <WrapIcrement>
-      <button onClick={onDecrement} disabled={disableDecrement}>
+      <button onClick={onDecrement} disabled={quantity <= 1}>
         <Minus />
       </button>
-      <input
-        type="number"
-        id="quantity"
-        name="quantity"
-        value={quantity}
-        readOnly
-      />
+      <input type="number" name="quantity" value={quantity} readOnly />
       <button onClick={onIncrement}>
         <Plus />
       </button>

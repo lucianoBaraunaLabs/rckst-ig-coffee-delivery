@@ -19,6 +19,12 @@ export const WrapIcrement = styled.div`
   button {
     background: none;
     border: none;
+    cursor: pointer;
+  }
+
+  button[disabled] {
+    opacity: 0.4;
+    cursor: initial;
   }
 
   input {
