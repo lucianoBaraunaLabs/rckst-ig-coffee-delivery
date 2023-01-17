@@ -1,5 +1,5 @@
 import { ShoppingCartSimple, Trash } from 'phosphor-react'
-import { useState } from 'react'
+import { useContext, useState } from 'react'
 import {
   CardContainer,
   ImageContainer,
@@ -17,57 +17,67 @@ import {
 
 import { InputQuantity } from '../InputQuantity'
 
+import { Coffee, CoffeeContext, CoffeId } from '../../contexts/CoffeeContext'
+
 interface CardProps extends CardPropStyles {
-  dataProduct: {
-    id: string
-    name: string
-    tags: string[]
-    description: string
-    value: number
-    img: string
-  }
+  coffee: Coffee
 }
 
-export function Card({ variation = 'card', dataProduct }: CardProps) {
-  const [quantyItem, setQuantyItem] = useState(0)
+export function Card({ variation = 'card', coffee }: CardProps) {
+  const { addCoffee, removeCoffee } = useContext(CoffeeContext)
+  const [quantity, setQuantity] = useState(1)
   const isVariationCard = variation !== 'row'
   const isVariationRow = variation === 'row'
+  const currencyValue = new Intl.NumberFormat('pt-br', {
+    minimumFractionDigits: 2,
+  }).format(coffee.price)
 
   function handleDecrementItem() {
-    setQuantyItem((prevState) => --prevState)
+    setQuantity((state) => state - 1)
   }
   function handleIncrementItem() {
-    setQuantyItem((prevState) => ++prevState)
+    setQuantity((state) => state + 1)
+  }
+
+  function handleAddProduct() {
+    const product = { ...coffee, quantity }
+    addCoffee(product)
+  }
+
+  function handleRemoveProduct(coffeeId: CoffeId) {
+    removeCoffee(coffeeId)
   }
 
   return (
     <CardContainer variation={variation}>
       <ImageContainer>
-        <img src={`./src/assets/produtos/${dataProduct.img}`} alt="" />
+        <img src={`./src/assets/produtos/${coffee.img}`} alt="" />
       </ImageContainer>
 
       <InfoContainer>
         {isVariationCard && (
           <List>
-            {dataProduct.tags.map((tagValue) => {
-              return <li key={`${dataProduct.id}_${tagValue}`}>{tagValue}</li>
+            {coffee.tags.map((tagValue) => {
+              return <li key={`${coffee.id}_${tagValue}`}>{tagValue}</li>
             })}
           </List>
         )}
 
-        <Title>{dataProduct.name}</Title>
+        <Title>{coffee.name}</Title>
 
-        {isVariationCard && <Text>{dataProduct.description}</Text>}
+        {isVariationCard && <Text>{coffee.description}</Text>}
 
         {isVariationRow && (
           <Controls>
             <InputQuantity
               onDecrement={handleDecrementItem}
               onIncrement={handleIncrementItem}
-              disableDecrement={quantyItem <= 0}
-              quantity={quantyItem}
+              quantity={quantity}
             />
-            <ButtonRemove variation="simple">
+            <ButtonRemove
+              variation="simple"
+              onClick={() => handleRemoveProduct(coffee.id)}
+            >
               <Trash size="1rem" /> REMOVER
             </ButtonRemove>
           </Controls>
@@ -76,17 +86,19 @@ export function Card({ variation = 'card', dataProduct }: CardProps) {
 
       <Footer>
         <Price>
-          <span>R$</span> {dataProduct.value}
+          <span>R$</span> {currencyValue}
         </Price>
         {isVariationCard && (
           <Controls as="div">
             <InputQuantity
               onDecrement={handleDecrementItem}
               onIncrement={handleIncrementItem}
-              disableDecrement={quantyItem <= 0}
-              quantity={quantyItem}
+              quantity={quantity}
             />
-            <ButtonCart to="/checkout" title="Ir para o checkout">
+            <ButtonCart
+              onClick={handleAddProduct}
+              title="Adicionar ao carrinho"
+            >
               <ShoppingCartSimple weight="fill" />
             </ButtonCart>
           </Controls>

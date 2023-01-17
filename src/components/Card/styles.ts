@@ -1,4 +1,3 @@
-import { Link } from 'react-router-dom'
 import styled, { css } from 'styled-components'
 import { Button } from '../Button'
 import { WrapIcrement } from '../InputQuantity/styles'
@@ -87,7 +86,7 @@ export const Controls = styled.footer`
   align-items: center;
 `
 
-export const ButtonCart = styled(Link)`
+export const ButtonCart = styled.button`
   ${({ theme }) => css`
     background-color: ${theme.palette['purple-900']};
     padding: ${theme.spacing[2]};
