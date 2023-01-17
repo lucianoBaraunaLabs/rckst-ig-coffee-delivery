@@ -19,7 +19,6 @@ import dataProducts from '../../assets/produtos/products.json'
 
 export function Home() {
   const theme = useTheme()
-  console.log(dataProducts)
 
   return (
     <>
@@ -76,7 +75,7 @@ export function Home() {
             {dataProducts.map((product) => {
               return (
                 <li key={product.id}>
-                  <Card dataProduct={product} />
+                  <Card coffee={product} />
                 </li>
               )
             })}
