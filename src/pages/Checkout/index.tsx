@@ -5,10 +5,12 @@ import {
   MapPinLine,
   Money,
 } from 'phosphor-react'
+import { useContext } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { useTheme } from 'styled-components'
 import { ButtonSelect } from '../../components/ButtonSelect'
 import { Card } from '../../components/Card'
+import { CoffeeContext } from '../../contexts/CoffeeContext'
 import {
   CheckoutAreaTitle,
   CheckoutCard,
@@ -22,14 +24,23 @@ import {
   CheckoutListTotal,
   ListTotalItem,
   ButtonConfirm,
+  Message,
 } from './styles'
+import { helperFormatCurrencyBRL } from '../../utils'
 
 export function Checkout() {
+  const { cartItems, infoCart, deliverValue } = useContext(CoffeeContext)
   const theme = useTheme()
   const navigate = useNavigate()
+  const totalDelivery = helperFormatCurrencyBRL(infoCart.total + deliverValue)
+  const hasCartItems = cartItems.length > 0
 
   function handleToSuccess() {
     navigate('/success')
+  }
+
+  function handleToHome() {
+    navigate('/')
   }
 
   return (
@@ -109,36 +120,46 @@ export function Checkout() {
           <CheckoutAreaTitle>Cafés selecionados</CheckoutAreaTitle>
         </header>
         <CheckoutCard as="div" borderVariation="card">
-          <CheckoutListCard>
-            <ListCardItem>
-              <Card variation="row" />
-            </ListCardItem>
-            <ListCardItem>
-              <Card variation="row" />
-            </ListCardItem>
-          </CheckoutListCard>
+          {!hasCartItems && <Message>Escolha algum Café :-)</Message>}
+
+          {hasCartItems && (
+            <CheckoutListCard>
+              {cartItems.map((item, index) => (
+                <ListCardItem key={`checkout-listcard-${index}`}>
+                  <Card
+                    coffee={item}
+                    key={`checkout-${index}-${item.id}`}
+                    variation="row"
+                  />
+                </ListCardItem>
+              ))}
+            </CheckoutListCard>
+          )}
 
           <CheckoutListTotal>
             <li>
               <ListTotalItem>
-                Total de itens <span>R$ 29,70</span>
+                Total de itens <span>{infoCart.quantity}</span>
               </ListTotalItem>
             </li>
             <li>
               <ListTotalItem>
-                Entrega <span>R$ 29,70</span>
+                Entrega <span>{helperFormatCurrencyBRL(deliverValue)}</span>
               </ListTotalItem>
             </li>
             <li>
               <ListTotalItem big>
-                Total <span>R$ 29,70</span>
+                Total <span>{totalDelivery}</span>
               </ListTotalItem>
             </li>
           </CheckoutListTotal>
-
-          <ButtonConfirm onClick={handleToSuccess}>
-            CONFIRMAR PEDIDO
-          </ButtonConfirm>
+          {hasCartItems ? (
+            <ButtonConfirm onClick={handleToSuccess}>
+              CONFIRMAR PEDIDO{' '}
+            </ButtonConfirm>
+          ) : (
+            <ButtonConfirm onClick={handleToHome}>ESCOLHER CAFÉS</ButtonConfirm>
+          )}
         </CheckoutCard>
       </aside>
     </CheckoutContainer>

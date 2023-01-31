@@ -227,3 +227,9 @@ export const ButtonConfirm = styled(ButtonContainer)`
   width: 100%;
   font-size: ${({ theme }) => theme.fontSize[14]};
 `
+export const Message = styled.h3`
+  ${({ theme }) => css`
+    margin-bottom: ${theme.spacing[4]};
+    font-size: ${theme.fontSize[32]};
+  `}
+`
