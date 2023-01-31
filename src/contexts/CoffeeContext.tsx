@@ -20,6 +20,7 @@ interface CoffeeContextType {
     quantity: number
     total: number
   }
+  deliverValue: number
 }
 
 interface CoffeeContextProviderProps {
@@ -70,7 +71,13 @@ export function CoffeeContextProvider({
 
   return (
     <CoffeeContext.Provider
-      value={{ cartItems, addCoffee, removeCoffee, infoCart: { ...infoCart } }}
+      value={{
+        cartItems,
+        addCoffee,
+        removeCoffee,
+        infoCart: { ...infoCart },
+        deliverValue: 3.9,
+      }}
     >
       {children}
     </CoffeeContext.Provider>
