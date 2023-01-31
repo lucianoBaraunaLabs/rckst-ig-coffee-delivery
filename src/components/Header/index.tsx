@@ -8,6 +8,7 @@ interface HeaderProps {
 }
 
 export function Header({ quantityItensCart }: HeaderProps) {
+  const linkToCheckout = quantityItensCart > 0 ? '/checkout' : '#'
   return (
     <HeaderContainer className="container">
       <Link to="/" title="Voltar para a home">
@@ -18,7 +19,7 @@ export function Header({ quantityItensCart }: HeaderProps) {
           <MapPin weight="fill" />
           Niterói, RJ
         </Address>
-        <ButtonCart to="/checkout" title="Ir para o checkout">
+        <ButtonCart to={linkToCheckout} title="Ir para o checkout">
           <ShoppingCartSimple weight="fill" />
           {quantityItensCart > 0 && (
             <span title="Itens no carrinho">{quantityItensCart}</span>
