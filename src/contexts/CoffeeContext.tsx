@@ -14,9 +14,12 @@ export interface Coffee {
 
 interface CoffeeContextType {
   cartItems: Coffee[]
-  quantityInCart: number
   addCoffee: (coffee: Coffee) => void
   removeCoffee: (coffeeId: CoffeId) => void
+  infoCart: {
+    quantity: number
+    total: number
+  }
 }
 
 interface CoffeeContextProviderProps {
@@ -30,45 +33,45 @@ export function CoffeeContextProvider({
 }: CoffeeContextProviderProps) {
   const [cartItems, setCartItems] = useState<Coffee[]>([])
   const infoCart = cartItems.reduce(
-    (prevValue, currValue) => {
-      let totalItemsQuantity = 0
-
-      if (currValue.quantity) {
-        totalItemsQuantity = prevValue.totalItemsQuantity + currValue.quantity
+    (prev, curr) => {
+      if (curr.quantity && curr.price) {
+        return {
+          quantity: prev.quantity + curr.quantity,
+          total: curr.price * curr.quantity + prev.total,
+        }
       }
-      return {
-        totalItemsQuantity,
-      }
+      return { ...prev }
     },
     {
-      totalItemsQuantity: 0,
-      totalItemsValue: 0,
+      quantity: 0,
+      total: 0,
     },
   )
 
   function addCoffee(coffee: Coffee) {
-    const alreadyInCart = cartItems.findIndex(
-      (cartItem) => cartItem.id === coffee.id,
-    )
+    const alreadyInCart = cartItems.find((item) => item.id === coffee.id)
 
-    if (alreadyInCart < 0) {
-      setCartItems((prevState) => [...prevState, coffee])
+    if (!alreadyInCart) {
+      setCartItems((prev) => [...prev, coffee])
     } else {
-      setCartItems((prevState) => {
-        prevState[alreadyInCart].quantity = coffee.quantity
-        return [...prevState]
+      setCartItems((prev) => {
+        return prev.map((item) =>
+          item.id === coffee.id
+            ? { ...item, quantity: coffee.quantity }
+            : { ...item },
+        )
       })
     }
   }
 
   function removeCoffee(coffeId: CoffeId) {
-    setCartItems((prevState) =>
-      prevState.filter((cartItem) => cartItem.id !== coffeId),
-    )
+    setCartItems((prev) => prev.filter((cartItem) => cartItem.id !== coffeId))
   }
 
   return (
-    <CoffeeContext.Provider value={{ cartItems, addCoffee, removeCoffee }}>
+    <CoffeeContext.Provider
+      value={{ cartItems, addCoffee, removeCoffee, infoCart: { ...infoCart } }}
+    >
       {children}
     </CoffeeContext.Provider>
   )
