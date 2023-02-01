@@ -25,17 +25,19 @@ interface CardProps extends CardPropStyles {
 
 export function Card({ variation = 'card', coffee }: CardProps) {
   const { addCoffee, removeCoffee } = useContext(CoffeeContext)
-  const [quantity, setQuantity] = useState(1)
+  const quantityProd = coffee.quantity || 1
+  const [quantity, setQuantity] = useState(quantityProd)
   const isVariationCard = variation !== 'row'
   const isVariationRow = variation === 'row'
   const currencyValue = new Intl.NumberFormat('pt-br', {
     minimumFractionDigits: 2,
   }).format(coffee.price)
 
-  function handleDecrementItem() {
+  function handleDecrement() {
     setQuantity((state) => state - 1)
   }
-  function handleIncrementItem() {
+
+  function handleIncrement() {
     setQuantity((state) => state + 1)
   }
 
@@ -46,6 +48,16 @@ export function Card({ variation = 'card', coffee }: CardProps) {
 
   function handleRemoveProduct(coffeeId: CoffeId) {
     removeCoffee(coffeeId)
+  }
+
+  function handleChangeDecrement() {
+    setQuantity((state) => state - 1)
+    handleAddProduct()
+  }
+
+  function handleChangeIncrement() {
+    setQuantity((state) => state + 1)
+    handleAddProduct()
   }
 
   return (
@@ -70,8 +82,8 @@ export function Card({ variation = 'card', coffee }: CardProps) {
         {isVariationRow && (
           <Controls>
             <InputQuantity
-              onDecrement={handleDecrementItem}
-              onIncrement={handleIncrementItem}
+              onDecrement={handleChangeDecrement}
+              onIncrement={handleChangeIncrement}
               quantity={quantity}
             />
             <ButtonRemove
@@ -91,8 +103,8 @@ export function Card({ variation = 'card', coffee }: CardProps) {
         {isVariationCard && (
           <Controls as="div">
             <InputQuantity
-              onDecrement={handleDecrementItem}
-              onIncrement={handleIncrementItem}
+              onDecrement={handleDecrement}
+              onIncrement={handleIncrement}
               quantity={quantity}
             />
             <ButtonCart
