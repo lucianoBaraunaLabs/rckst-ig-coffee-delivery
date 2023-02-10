@@ -5,7 +5,7 @@ export interface ButtonPropsStyles
   variation?: 'simple' | 'big'
 }
 
-const heplerButtonVariations = css`
+export const ButtonStyles = css`
   ${({ theme }) => css`
     gap: ${theme.spacing[2]};
     padding: ${theme.spacing[2]} ${theme.spacing[2.5]};
@@ -31,10 +31,10 @@ const heplerButtonVariations = css`
   display: inline-flex;
 `
 
-const buttonVariations = {
-  simple: heplerButtonVariations,
+export const ButtonStylesVariations = {
+  simple: ButtonStyles,
   big: css`
-    ${heplerButtonVariations}
+    ${ButtonStyles}
     ${({ theme }) => css`
       padding: ${theme.spacing[4]};
       font-size: ${theme.fontSize.base};
@@ -64,5 +64,5 @@ const BaseButton = styled.button<ButtonPropsStyles>`
 `
 
 export const ButtonContainer = styled(BaseButton)`
-  ${(props) => props.variation && buttonVariations[props.variation]};
+  ${(props) => props.variation && ButtonStylesVariations[props.variation]};
 `

@@ -25,6 +25,7 @@ import {
   ListTotalItem,
   ButtonConfirm,
   Message,
+  ButtonPaymentType,
 } from './styles'
 import { helperFormatCurrencyBRL } from '../../utils'
 
@@ -91,6 +92,30 @@ export function Checkout() {
                 </p>
               </div>
             </CheckoutCardHeader>
+            <CheckoutListTypePayment>
+              <ButtonPaymentType>
+                <input type="radio" name="typePayment" id="creditCard" />
+                <label htmlFor="creditCard">
+                  <CreditCard color="#8641be" />
+                  CARTÃO DE CRÉDITO
+                </label>
+              </ButtonPaymentType>
+              <ButtonPaymentType>
+                <input type="radio" name="typePayment" id="debitCard" />
+                <label htmlFor="debitCard">
+                  <Bank color="#8641be" />
+                  CARTÃO DE DÉBITO
+                </label>
+              </ButtonPaymentType>
+
+              <ButtonPaymentType>
+                <input type="radio" name="typePayment" id="money" />
+                <label htmlFor="money">
+                  <Money color="#8641be" />
+                  DINHEIRO
+                </label>
+              </ButtonPaymentType>
+            </CheckoutListTypePayment>
             <CheckoutListTypePayment>
               <li>
                 <ButtonSelect onSelectButton={(e) => console.log(e)}>

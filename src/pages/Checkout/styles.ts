@@ -1,5 +1,8 @@
 import styled, { css } from 'styled-components'
-import { ButtonContainer } from '../../components/Button/styles'
+import {
+  ButtonContainer,
+  ButtonStylesVariations,
+} from '../../components/Button/styles'
 import { ButtonSelectContainer } from '../../components/ButtonSelect/styles'
 import { CardContainer } from '../../components/Card/styles'
 
@@ -77,11 +80,43 @@ export const CheckoutCardHeader = styled.header`
 
   display: flex;
 `
-export const CheckoutListTypePayment = styled.ul`
+
+export const ButtonPaymentType = styled.div`
+  label {
+    ${ButtonStylesVariations.big}
+    border: solid 1px transparent;
+    font-size: inherit;
+    display: flex;
+    width: 100%;
+  }
+  input {
+    position: absolute;
+    clip: rect(0, 0, 0, 0);
+    pointer-events: none;
+  }
+
+  input:checked + label {
+    ${({ theme }) => css`
+      background-color: ${theme.palette['purple-100']};
+      border-color: ${theme.palette['purple-500']};
+
+      &:hover {
+        background-color: ${theme.palette['purple-100']};
+
+        svg {
+          color: ${theme.palette['purple-500']};
+        }
+      }
+    `}
+  }
+`
+
+export const CheckoutListTypePayment = styled.div`
   ${({ theme }) => css`
     gap: ${theme.spacing[3]};
 
-    ${ButtonSelectContainer} {
+    ${ButtonPaymentType} {
+      flex: 1;
       font-size: ${theme.fontSize[12]};
       width: 100%;
       text-align: center;
