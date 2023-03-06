@@ -1,4 +1,4 @@
-import { WrapIcrement } from './styles'
+import * as S from './styles'
 import { Minus, Plus } from 'phosphor-react'
 
 interface InputQuantityProps {
@@ -13,7 +13,7 @@ export function InputQuantity({
   quantity,
 }: InputQuantityProps) {
   return (
-    <WrapIcrement>
+    <S.WrapIcrement>
       <button onClick={onDecrement} disabled={quantity <= 1}>
         <Minus />
       </button>
@@ -21,6 +21,6 @@ export function InputQuantity({
       <button onClick={onIncrement}>
         <Plus />
       </button>
-    </WrapIcrement>
+    </S.WrapIcrement>
   )
 }
