@@ -1,17 +1,7 @@
 import { Coffee, Package, ShoppingCart, Timer } from 'phosphor-react'
 import { Card } from '../../components/Card'
 import imgCoffe from '../../assets/img-banner.png'
-import {
-  Hero,
-  HeroContainer,
-  HeroContent,
-  HeroImg,
-  HeroList,
-  HeroSubTitle,
-  HeroTitle,
-  Products,
-  ProductsList,
-} from './styles'
+import * as S from './styles'
 import { useTheme } from 'styled-components'
 import { IconCircle } from '../../components/IconCircle'
 
@@ -23,17 +13,17 @@ export function Home() {
   return (
     <>
       <main>
-        <Hero>
-          <HeroContainer className="container">
-            <HeroContent>
-              <HeroTitle>
+        <S.Hero>
+          <S.HeroContainer className="container">
+            <S.HeroContent>
+              <S.HeroTitle>
                 Encontre o café perfeito para qualquer hora do dia
-              </HeroTitle>
-              <HeroSubTitle>
+              </S.HeroTitle>
+              <S.HeroSubTitle>
                 Com o Coffee Delivery você recebe seu café onde estiver, a
                 qualquer hora
-              </HeroSubTitle>
-              <HeroList>
+              </S.HeroSubTitle>
+              <S.HeroList>
                 <li>
                   <IconCircle
                     customColor={theme.palette['yellow-900']}
@@ -62,16 +52,16 @@ export function Home() {
                   />
                   <p>O café chega fresquinho até você</p>
                 </li>
-              </HeroList>
-            </HeroContent>
-            <HeroImg>
+              </S.HeroList>
+            </S.HeroContent>
+            <S.HeroImg>
               <img src={imgCoffe} alt="Copo de café ilustrativo" />
-            </HeroImg>
-          </HeroContainer>
-        </Hero>
-        <Products className="container">
+            </S.HeroImg>
+          </S.HeroContainer>
+        </S.Hero>
+        <S.Products className="container">
           <h3>Nossos cafés</h3>
-          <ProductsList>
+          <S.ProductsList>
             {dataProducts.map((product) => {
               return (
                 <li key={product.id}>
@@ -79,8 +69,8 @@ export function Home() {
                 </li>
               )
             })}
-          </ProductsList>
-        </Products>
+          </S.ProductsList>
+        </S.Products>
       </main>
     </>
   )
