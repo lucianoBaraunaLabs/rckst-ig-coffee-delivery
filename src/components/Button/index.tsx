@@ -1,14 +1,14 @@
 import { ReactNode } from 'react'
-import { ButtonContainer, ButtonPropsStyles } from './styles'
+import * as S from './styles'
 
-interface ButtonProps extends ButtonPropsStyles {
+interface ButtonProps extends S.ButtonPropsStyles {
   children: ReactNode
 }
 
 export function Button({ children, variation, ...props }: ButtonProps) {
   return (
-    <ButtonContainer variation={variation} {...props}>
+    <S.ButtonContainer variation={variation} {...props}>
       {children}
-    </ButtonContainer>
+    </S.ButtonContainer>
   )
 }
