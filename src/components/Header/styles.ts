@@ -1,4 +1,4 @@
-import { Link, LinkProps, NavLink } from 'react-router-dom'
+import { Link, LinkProps } from 'react-router-dom'
 import styled, { css } from 'styled-components'
 
 export const HeaderContainer = styled.header`

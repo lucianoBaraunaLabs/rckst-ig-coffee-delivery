@@ -1,5 +1,5 @@
-import { Divide, MapPin, ShoppingCartSimple } from 'phosphor-react'
-import { Link, useLocation } from 'react-router-dom'
+import { MapPin, ShoppingCartSimple } from 'phosphor-react'
+import { Link } from 'react-router-dom'
 import logoCafe from '../../assets/logo.svg'
 import * as S from './styles'
 
