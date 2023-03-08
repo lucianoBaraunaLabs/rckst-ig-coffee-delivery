@@ -1,4 +1,4 @@
-import { Link } from 'react-router-dom'
+import { Link, LinkProps, NavLink } from 'react-router-dom'
 import styled, { css } from 'styled-components'
 
 export const HeaderContainer = styled.header`
@@ -44,7 +44,11 @@ export const Infos = styled.div`
   gap: ${({ theme }) => theme.spacing[3]};
 `
 
-export const ButtonCart = styled(Link)`
+interface ButtonCardProps extends LinkProps {
+  isDisabled?: boolean
+}
+
+export const ButtonCart = styled(Link)<ButtonCardProps>`
   ${ButtonStyles}
 
   ${({ theme }) => css`
@@ -72,5 +76,12 @@ export const ButtonCart = styled(Link)`
     display: inline-flex;
     align-items: center;
     justify-content: center;
+  }
+
+  &.disabled {
+    opacity: 0.5;
+    &:focus {
+      outline: none;
+    }
   }
 `
