@@ -8,25 +8,9 @@ import {
 import { useContext } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { useTheme } from 'styled-components'
-import { ButtonSelect } from '../../components/ButtonSelect'
 import { Card } from '../../components/Card'
 import { CoffeeContext } from '../../contexts/CoffeeContext'
-import {
-  CheckoutAreaTitle,
-  CheckoutCard,
-  CheckoutCardHeader,
-  CheckoutCompleteOrderFilds,
-  CheckoutContainer,
-  CheckoutListCard,
-  CheckoutListTypePayment,
-  CheckoutInput,
-  ListCardItem,
-  CheckoutListTotal,
-  ListTotalItem,
-  ButtonConfirm,
-  Message,
-  ButtonPaymentType,
-} from './styles'
+import * as S from './styles'
 import { helperFormatCurrencyBRL } from '../../utils'
 
 export function Checkout() {
@@ -45,31 +29,81 @@ export function Checkout() {
   }
 
   return (
-    <CheckoutContainer className="container">
+    <S.CheckoutContainer className="container">
+      <aside>
+        <header>
+          <S.CheckoutAreaTitle>Cafés selecionados</S.CheckoutAreaTitle>
+        </header>
+        <S.CheckoutCard as="div" borderVariation="card">
+          {!hasCartItems && <S.Message>Escolha algum Café :-)</S.Message>}
+
+          {hasCartItems && (
+            <S.CheckoutListCard>
+              {cartItems.map((item, index) => (
+                <S.ListCardItem key={`checkout-listcard-${index}`}>
+                  <Card
+                    coffee={item}
+                    key={`checkout-${index}-${item.id}`}
+                    variation="row"
+                  />
+                </S.ListCardItem>
+              ))}
+            </S.CheckoutListCard>
+          )}
+
+          <S.CheckoutListTotal>
+            <li>
+              <S.ListTotalItem>
+                Total de itens <span>{infoCart.quantity}</span>
+              </S.ListTotalItem>
+            </li>
+            <li>
+              <S.ListTotalItem>
+                Entrega <span>{helperFormatCurrencyBRL(deliverValue)}</span>
+              </S.ListTotalItem>
+            </li>
+            <li>
+              <S.ListTotalItem big>
+                Total <span>{totalDelivery}</span>
+              </S.ListTotalItem>
+            </li>
+          </S.CheckoutListTotal>
+          {hasCartItems ? (
+            <S.ButtonConfirm onClick={handleToSuccess}>
+              CONFIRMAR PEDIDO{' '}
+            </S.ButtonConfirm>
+          ) : (
+            <S.ButtonConfirm onClick={handleToHome}>
+              ESCOLHER CAFÉS
+            </S.ButtonConfirm>
+          )}
+        </S.CheckoutCard>
+      </aside>
+
       <section>
         <header>
-          <CheckoutAreaTitle>Complete seu pedido</CheckoutAreaTitle>
+          <S.CheckoutAreaTitle>Complete seu pedido</S.CheckoutAreaTitle>
         </header>
 
-        <CheckoutCompleteOrderFilds>
-          <CheckoutCard>
-            <CheckoutCardHeader>
+        <S.CheckoutCompleteOrderFilds>
+          <S.CheckoutCard>
+            <S.CheckoutCardHeader>
               <MapPinLine color={theme.palette['yellow-900']} />
               <div>
                 <h3>Endereço de Entrega</h3>
                 <p>Informe o endereço onde deseja receber seu pedido</p>
               </div>
-            </CheckoutCardHeader>
-            <CheckoutInput>
+            </S.CheckoutCardHeader>
+            <S.CheckoutInput>
               <input type="text" id="nome" placeholder="dadad" />
               <label htmlFor="nome">Nome</label>
-            </CheckoutInput>{' '}
-            <CheckoutInput>
+            </S.CheckoutInput>{' '}
+            <S.CheckoutInput>
               <input type="text" id="teste1" placeholder="dada" />
               <label htmlFor="teste1">teste1</label>
               <span>Opcional</span>
-            </CheckoutInput>
-            <CheckoutInput>
+            </S.CheckoutInput>
+            <S.CheckoutInput>
               <input
                 type="text"
                 id="teste2"
@@ -78,11 +112,11 @@ export function Checkout() {
               />
               <label htmlFor="teste2">teste2</label>
               <span>Opcional</span>
-            </CheckoutInput>
-          </CheckoutCard>
+            </S.CheckoutInput>
+          </S.CheckoutCard>
 
-          <CheckoutCard>
-            <CheckoutCardHeader>
+          <S.CheckoutCard>
+            <S.CheckoutCardHeader>
               <CurrencyDollar color={theme.palette['purple-500']} />
               <div>
                 <h3>Pagamento</h3>
@@ -91,102 +125,34 @@ export function Checkout() {
                   pagar
                 </p>
               </div>
-            </CheckoutCardHeader>
-            <CheckoutListTypePayment>
-              <ButtonPaymentType>
+            </S.CheckoutCardHeader>
+            <S.CheckoutListTypePayment>
+              <S.ButtonPaymentType>
                 <input type="radio" name="typePayment" id="creditCard" />
                 <label htmlFor="creditCard">
                   <CreditCard color="#8641be" />
                   CARTÃO DE CRÉDITO
                 </label>
-              </ButtonPaymentType>
-              <ButtonPaymentType>
+              </S.ButtonPaymentType>
+              <S.ButtonPaymentType>
                 <input type="radio" name="typePayment" id="debitCard" />
                 <label htmlFor="debitCard">
                   <Bank color="#8641be" />
                   CARTÃO DE DÉBITO
                 </label>
-              </ButtonPaymentType>
+              </S.ButtonPaymentType>
 
-              <ButtonPaymentType>
+              <S.ButtonPaymentType>
                 <input type="radio" name="typePayment" id="money" />
                 <label htmlFor="money">
                   <Money color="#8641be" />
                   DINHEIRO
                 </label>
-              </ButtonPaymentType>
-            </CheckoutListTypePayment>
-            <CheckoutListTypePayment>
-              <li>
-                <ButtonSelect onSelectButton={(e) => console.log(e)}>
-                  <CreditCard color="#8641be" />
-                  CARTÃO DE CRÉDITO
-                </ButtonSelect>
-              </li>
-              <li>
-                <ButtonSelect onSelectButton={(e) => console.log(e)}>
-                  <Bank color="#8641be" />
-                  CARTÃO DE DÉBITO
-                </ButtonSelect>
-              </li>
-              <li>
-                <ButtonSelect onSelectButton={(e) => console.log(e)}>
-                  <Money color="#8641be" />
-                  DINHEIRO
-                </ButtonSelect>
-              </li>
-            </CheckoutListTypePayment>
-          </CheckoutCard>
-        </CheckoutCompleteOrderFilds>
+              </S.ButtonPaymentType>
+            </S.CheckoutListTypePayment>
+          </S.CheckoutCard>
+        </S.CheckoutCompleteOrderFilds>
       </section>
-
-      <aside>
-        <header>
-          <CheckoutAreaTitle>Cafés selecionados</CheckoutAreaTitle>
-        </header>
-        <CheckoutCard as="div" borderVariation="card">
-          {!hasCartItems && <Message>Escolha algum Café :-)</Message>}
-
-          {hasCartItems && (
-            <CheckoutListCard>
-              {cartItems.map((item, index) => (
-                <ListCardItem key={`checkout-listcard-${index}`}>
-                  <Card
-                    coffee={item}
-                    key={`checkout-${index}-${item.id}`}
-                    variation="row"
-                  />
-                </ListCardItem>
-              ))}
-            </CheckoutListCard>
-          )}
-
-          <CheckoutListTotal>
-            <li>
-              <ListTotalItem>
-                Total de itens <span>{infoCart.quantity}</span>
-              </ListTotalItem>
-            </li>
-            <li>
-              <ListTotalItem>
-                Entrega <span>{helperFormatCurrencyBRL(deliverValue)}</span>
-              </ListTotalItem>
-            </li>
-            <li>
-              <ListTotalItem big>
-                Total <span>{totalDelivery}</span>
-              </ListTotalItem>
-            </li>
-          </CheckoutListTotal>
-          {hasCartItems ? (
-            <ButtonConfirm onClick={handleToSuccess}>
-              CONFIRMAR PEDIDO{' '}
-            </ButtonConfirm>
-          ) : (
-            <ButtonConfirm onClick={handleToHome}>ESCOLHER CAFÉS</ButtonConfirm>
-          )}
-        </CheckoutCard>
-      </aside>
-    </CheckoutContainer>
+    </S.CheckoutContainer>
   )
 }

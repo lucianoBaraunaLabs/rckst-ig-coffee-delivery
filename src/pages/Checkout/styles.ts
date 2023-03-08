@@ -3,7 +3,6 @@ import {
   ButtonContainer,
   ButtonStylesVariations,
 } from '../../components/Button/styles'
-import { ButtonSelectContainer } from '../../components/ButtonSelect/styles'
 import { CardContainer } from '../../components/Card/styles'
 
 interface ListTotalItemProps {
@@ -17,8 +16,18 @@ export const CheckoutContainer = styled.main`
 
   @media (min-width: 61.25rem) {
     grid-template-columns: minmax(300px, 640px) 448px;
+
+    > section {
+      grid-column: 1 / 2;
+      grid-row: 1;
+    }
+
+    > aside {
+      grid-column: 2 / 3;
+    }
   }
 `
+
 export const CheckoutAreaTitle = styled.h2`
   ${({ theme }) => css`
     font-size: ${theme.fontSize[18]};
@@ -116,10 +125,14 @@ export const CheckoutListTypePayment = styled.div`
     gap: ${theme.spacing[3]};
 
     ${ButtonPaymentType} {
-      flex: 1;
+      flex: 1 auto;
       font-size: ${theme.fontSize[12]};
       width: 100%;
       text-align: center;
+
+      @media (min-width: 75rem) {
+        flex-basis: 30%;
+      }
     }
   `}
 
