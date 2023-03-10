@@ -91,6 +91,7 @@ export const ButtonCart = styled.button`
     background-color: ${theme.palette['purple-900']};
     padding: ${theme.spacing[2]};
     border-radius: ${theme.borderRadius['1.5']};
+    border: none;
 
     display: inline-flex;
 
@@ -181,6 +182,10 @@ const CardContainerVariation = {
     }
   `,
   card: css`
+    ${({ theme }) => css`
+      padding-left: ${theme.spacing[2]};
+      padding-right: ${theme.spacing[2]};
+    `}
     ${InfoContainer} {
       ${({ theme }) => css`
         padding-top: ${theme.spacing[24]};
