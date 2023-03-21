@@ -28,49 +28,37 @@ export function OrderSideBar() {
               <p>Informe o endereço onde deseja receber seu pedido</p>
             </div>
           </S.CheckoutCardHeader>
-          <div>
-            <S.CheckoutInput>
+          <S.FormAddressDelivery>
+            <S.CheckoutInput size="30%">
               <input type="text" id="zipcode" placeholder="Digite seu cep" />
               <label htmlFor="zipcode">Cep</label>
             </S.CheckoutInput>
-          </div>
-          <div>
             <S.CheckoutInput>
               <input type="text" id="street" placeholder="Digite o endereço" />
               <label htmlFor="street">Rua</label>
             </S.CheckoutInput>
-          </div>
-          <div>
-            <S.CheckoutInput>
+            <S.CheckoutInput size="30%">
               <input type="text" id="number" placeholder="Digite o número" />
               <label htmlFor="number">Número</label>
             </S.CheckoutInput>
-          </div>
-          <div>
-            <S.CheckoutInput>
+            <S.CheckoutInput size="67%">
               <input type="text" id="complemento" placeholder="dada" />
               <label htmlFor="complemento">Complemento</label>
               <span>Opcional</span>
             </S.CheckoutInput>
-          </div>
-          <div>
-            <S.CheckoutInput>
+            <S.CheckoutInput size="30%">
               <input type="text" id="bairro" placeholder="dadad" />
               <label htmlFor="bairro">Bairro</label>
             </S.CheckoutInput>
-          </div>
-          <div>
-            <S.CheckoutInput>
+            <S.CheckoutInput size="44%">
               <input type="text" id="cidade" placeholder="dadad" />
               <label htmlFor="cidade">Cidade</label>
             </S.CheckoutInput>
-          </div>
-          <div>
-            <S.CheckoutInput>
+            <S.CheckoutInput size="20%">
               <input type="text" id="estado" placeholder="dadad" />
               <label htmlFor="estado">Estado</label>
             </S.CheckoutInput>
-          </div>
+          </S.FormAddressDelivery>
         </CardBox>
 
         <CardBox>

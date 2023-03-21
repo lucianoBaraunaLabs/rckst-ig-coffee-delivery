@@ -89,7 +89,11 @@ export const CheckoutListTypePayment = styled.div`
   }
 `
 
-export const CheckoutInput = styled.div`
+interface CheckoutInputProps {
+  size?: string
+}
+
+export const CheckoutInput = styled.div<CheckoutInputProps>`
   ${({ theme }) => css`
     border: 1px solid ${theme.palette.button};
     border-radius: ${theme.borderRadius['1.5']};
@@ -110,6 +114,7 @@ export const CheckoutInput = styled.div`
   display: flex;
   align-items: center;
   position: relative;
+  width: ${(prop) => (prop.size ? prop.size : '100%')};
 
   label {
     position: absolute;
@@ -157,4 +162,17 @@ export const CheckoutInput = styled.div`
       visibility: hidden;
     }
   }
+`
+export const FormAddressDelivery = styled.div`
+  ${({ theme }) => css`
+    display: flex;
+    flex-wrap: wrap;
+    gap: ${theme.spacing[4]};
+
+    @media (max-width: 74.938em) {
+      ${CheckoutInput} {
+        width: 100%;
+      }
+    }
+  `}
 `
