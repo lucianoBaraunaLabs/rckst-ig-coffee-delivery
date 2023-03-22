@@ -94,12 +94,15 @@ export const ProductsList = styled.ul`
       flex: 1 1 calc(25% - ${theme.spacing[8]});
       min-width: ${theme.spacing[60]};
     }
-  `};
-  list-style: none;
-  display: flex;
-  flex-wrap: wrap;
+    list-style: none;
+    display: flex;
+    flex-wrap: wrap;
 
-  &::after {
-    content: '';
-  }
+    &::after {
+      content: '';
+      @media (min-width: 68rem) {
+        min-width: 33rem;
+      }
+    }
+  `};
 `
