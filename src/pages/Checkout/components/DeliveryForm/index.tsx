@@ -7,8 +7,8 @@ import {
 } from 'phosphor-react'
 import { useTheme } from 'styled-components'
 import * as S from './styles'
-import { TitleSection } from '../TitleSection'
-import { CardBox } from '../CardBox'
+import { TitleSection } from '~/pages/Checkout/components/TitleSection'
+import { CardBox } from '~/pages/Checkout/components/CardBox'
 
 export function DeliveryForm() {
   const theme = useTheme()

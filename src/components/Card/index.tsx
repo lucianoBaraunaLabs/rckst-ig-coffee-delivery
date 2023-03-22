@@ -2,9 +2,9 @@ import { ShoppingCartSimple, Trash } from 'phosphor-react'
 import { useContext, useState } from 'react'
 import * as S from './styles'
 
-import { InputQuantity } from '../InputQuantity'
+import { InputQuantity } from '~/components/InputQuantity'
 
-import { Coffee, CoffeeContext, CoffeId } from '../../contexts/CoffeeContext'
+import { Coffee, CoffeeContext, CoffeId } from '~/contexts/CoffeeContext'
 
 interface CardProps extends S.CardPropStyles {
   coffee: Coffee

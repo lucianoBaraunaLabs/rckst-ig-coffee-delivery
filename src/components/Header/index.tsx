@@ -1,6 +1,6 @@
 import { MapPin, ShoppingCartSimple } from 'phosphor-react'
 import { Link } from 'react-router-dom'
-import logoCafe from '../../assets/logo.svg'
+import logoCafe from '~/assets/logo.svg'
 import * as S from './styles'
 
 interface HeaderProps {

@@ -1,11 +1,11 @@
 import { useContext } from 'react'
-import { Card } from '../../../../components/Card'
-import { CoffeeContext } from '../../../../contexts/CoffeeContext'
+import { Card } from '~/components/Card'
+import { CoffeeContext } from '~/contexts/CoffeeContext'
 import * as S from './styles'
-import { helperFormatCurrencyBRL } from '../../../../utils'
+import { helperFormatCurrencyBRL } from '~/utils'
 import { useNavigate } from 'react-router-dom'
-import { TitleSection } from '../TitleSection'
-import { CardBox } from '../CardBox'
+import { TitleSection } from '~/pages/Checkout/components/TitleSection'
+import { CardBox } from '~/pages/Checkout/components/CardBox'
 
 export function CoffeSelected() {
   const { cartItems, infoCart, deliverValue } = useContext(CoffeeContext)

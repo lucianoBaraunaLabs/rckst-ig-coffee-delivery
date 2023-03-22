@@ -1,11 +1,11 @@
 import { Coffee, Package, ShoppingCart, Timer } from 'phosphor-react'
-import { Card } from '../../components/Card'
-import imgCoffe from '../../assets/img-banner.png'
+import { Card } from '~/components/Card'
+import imgCoffe from '~/assets/img-banner.png'
 import * as S from './styles'
 import { useTheme } from 'styled-components'
-import { IconCircle } from '../../components/IconCircle'
+import { IconCircle } from '~/components/IconCircle'
 
-import dataProducts from '../../assets/produtos/products.json'
+import dataProducts from '~/assets/produtos/products.json'
 
 export function Home() {
   const theme = useTheme()
