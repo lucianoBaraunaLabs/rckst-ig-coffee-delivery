@@ -1,12 +1,12 @@
 import * as S from './styles'
-import { CoffeSelected } from './components/CoffeSelected'
-import { OrderSideBar } from './components/OrderSideBar'
+import { CoffeSelected } from '~/pages/Checkout/components/CoffeSelected'
+import { DeliveryForm } from '~/pages/Checkout/components/DeliveryForm'
 
 export function Checkout() {
   return (
     <S.CheckoutContainer className="container">
       <CoffeSelected />
-      <OrderSideBar />
+      <DeliveryForm />
     </S.CheckoutContainer>
   )
 }

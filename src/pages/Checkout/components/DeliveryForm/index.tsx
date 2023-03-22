@@ -10,7 +10,7 @@ import * as S from './styles'
 import { TitleSection } from '../TitleSection'
 import { CardBox } from '../CardBox'
 
-export function OrderSideBar() {
+export function DeliveryForm() {
   const theme = useTheme()
 
   return (
