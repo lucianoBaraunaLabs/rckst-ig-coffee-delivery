@@ -13,9 +13,33 @@ import {
   InfoContent,
   Title,
 } from './styles'
+import { useContext, useEffect } from 'react'
+import { CoffeeContext } from '~/contexts/CoffeeContext'
+import { useNavigate } from 'react-router-dom'
+
+type Payment = 'paymentCreditCard' | 'paymentDebitCard' | 'paymentMoney'
+
+const orderPayment: Record<Payment, string> = {
+  paymentCreditCard: 'Cartão de crédito',
+  paymentDebitCard: 'Cartão de débito',
+  paymentMoney: 'Pagamento em dinheiro',
+}
 
 export function Success() {
   const theme = useTheme()
+  const { order } = useContext(CoffeeContext)
+  const { deliveryTime, deliveryTo } = order
+  const textPayment = orderPayment[deliveryTo.typePayment as Payment]
+  const navigate = useNavigate()
+  const orderIsEmpty = Object.values(order.deliveryTo).every(
+    (value) => value === '',
+  )
+
+  useEffect(() => {
+    if (orderIsEmpty) {
+      navigate('/')
+    }
+  }, [navigate, orderIsEmpty])
 
   return (
     <Container className="container">
@@ -32,8 +56,13 @@ export function Success() {
                 icon={<MapPin weight="fill" />}
               />
               <InfoContent as="address">
-                Entrega em <strong>Rua João Daniel Martinelli, 102</strong>
-                &nbsp; Farrapos - Porto Alegre, RS
+                Entrega em{' '}
+                <strong>
+                  {deliveryTo.street}, {deliveryTo.addressNumber},{' '}
+                  {deliveryTo.complement}
+                </strong>
+                &nbsp; {deliveryTo.neighborhood} - {deliveryTo.city},{' '}
+                {deliveryTo.state}
               </InfoContent>
             </Info>
             <Info>
@@ -44,7 +73,7 @@ export function Success() {
               <InfoContent>
                 Previsão de entrega
                 <time>
-                  <strong>20 min - 30 min</strong>
+                  <strong>{deliveryTime}</strong>
                 </time>
               </InfoContent>
             </Info>
@@ -54,9 +83,7 @@ export function Success() {
                 icon={<CurrencyDollar weight="fill" />}
               />
               <InfoContent>
-                <p>
-                  Pagamento na entrega <strong>Cartão de crédito</strong>
-                </p>
+                Pagamento na entrega <strong>{textPayment}</strong>
               </InfoContent>
             </Info>
           </CardDelivery>
