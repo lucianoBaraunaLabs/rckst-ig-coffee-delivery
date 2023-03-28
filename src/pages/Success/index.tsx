@@ -17,12 +17,12 @@ import { useContext, useEffect } from 'react'
 import { CoffeeContext } from '~/contexts/CoffeeContext'
 import { useNavigate } from 'react-router-dom'
 
-type Payment = 'paymentCreditCard' | 'paymentDebitCard' | 'paymentMoney'
+type Payment = 'creditCard' | 'debitCard' | 'money'
 
 const orderPayment: Record<Payment, string> = {
-  paymentCreditCard: 'Cartão de crédito',
-  paymentDebitCard: 'Cartão de débito',
-  paymentMoney: 'Pagamento em dinheiro',
+  creditCard: 'Cartão de crédito',
+  debitCard: 'Cartão de débito',
+  money: 'Pagamento em dinheiro',
 }
 
 export function Success() {

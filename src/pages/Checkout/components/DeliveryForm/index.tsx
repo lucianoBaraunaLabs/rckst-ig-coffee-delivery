@@ -82,7 +82,7 @@ export function DeliveryForm() {
               <input
                 type="text"
                 id="complement"
-                placeholder="dada"
+                placeholder="Digite o complemento"
                 {...register('complement')}
               />
               <label htmlFor="complement">Complemento</label>
@@ -92,7 +92,7 @@ export function DeliveryForm() {
               <input
                 type="text"
                 id="neighborhood"
-                placeholder="dadad"
+                placeholder="Diget seu bairro"
                 {...register('neighborhood', { required: true })}
               />
               <label htmlFor="neighborhood">Bairro</label>
@@ -101,7 +101,7 @@ export function DeliveryForm() {
               <input
                 type="text"
                 id="city"
-                placeholder="dadad"
+                placeholder="Digite sua cidade"
                 {...register('city', { required: true })}
               />
               <label htmlFor="city">Cidade</label>
@@ -110,7 +110,7 @@ export function DeliveryForm() {
               <input
                 type="text"
                 id="state"
-                placeholder="dadad"
+                placeholder="Digite seu estado"
                 {...register('state', { required: true })}
               />
               <label htmlFor="state">Estado</label>
@@ -129,14 +129,14 @@ export function DeliveryForm() {
             </div>
           </S.CheckoutCardHeader>
           {hasError && (
-            <ErrorForm errors={errors} listFields={['typePayment']} />
+            <ErrorForm errors={errors} listFields={['paymentType']} />
           )}
           <S.CheckoutListPaymentType>
             <S.ButtonPaymentType>
               <input
                 type="radio"
                 id="creditCard"
-                value={'paymentCreditCard'}
+                value={'creditCard'}
                 {...register('paymentType', { required: true })}
               />
               <label htmlFor="creditCard">
@@ -148,7 +148,7 @@ export function DeliveryForm() {
               <input
                 type="radio"
                 id="debitCard"
-                value={'paymentDebitCard'}
+                value={'debitCard'}
                 {...register('paymentType', { required: true })}
               />
               <label htmlFor="debitCard">
@@ -161,7 +161,7 @@ export function DeliveryForm() {
               <input
                 type="radio"
                 id="money"
-                value={'paymentMoney'}
+                value={'money'}
                 {...register('paymentType', { required: true })}
               />
               <label htmlFor="money">
