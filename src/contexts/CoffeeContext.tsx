@@ -1,4 +1,5 @@
 import { createContext, ReactNode, useState } from 'react'
+import { DeliveryFormData } from '~/pages/Checkout'
 
 export type CoffeId = string
 
@@ -12,15 +13,25 @@ export interface Coffee {
   quantity?: number
 }
 
+interface Order {
+  deliveryTo: DeliveryFormData
+  deliveryTime: string
+}
+
 interface CoffeeContextType {
   cartItems: Coffee[]
   addCoffee: (coffee: Coffee) => void
   removeCoffee: (coffeeId: CoffeId) => void
+  confirmOrder: (data: DeliveryFormData) => void
   infoCart: {
     quantity: number
     total: number
   }
   deliverValue: number
+  order: {
+    deliveryTime: string
+    deliveryTo: DeliveryFormData
+  }
 }
 
 interface CoffeeContextProviderProps {
@@ -48,6 +59,19 @@ export function CoffeeContextProvider({
       total: 0,
     },
   )
+  const [order, setOrder] = useState<Order>({
+    deliveryTime: '20 min - 30 min',
+    deliveryTo: {
+      zipcode: '',
+      street: '',
+      addressNumber: '',
+      complement: '',
+      neighborhood: '',
+      city: '',
+      state: '',
+      typePayment: '',
+    },
+  })
 
   function addCoffee(coffee: Coffee) {
     const alreadyInCart = cartItems.find((item) => item.id === coffee.id)
@@ -69,14 +93,25 @@ export function CoffeeContextProvider({
     setCartItems((prev) => prev.filter((cartItem) => cartItem.id !== coffeId))
   }
 
+  function confirmOrder(data: DeliveryFormData) {
+    setOrder((prev) => {
+      return {
+        ...prev,
+        deliveryTo: data,
+      }
+    })
+  }
+
   return (
     <CoffeeContext.Provider
       value={{
         cartItems,
         addCoffee,
         removeCoffee,
+        confirmOrder,
         infoCart: { ...infoCart },
         deliverValue: 3.9,
+        order,
       }}
     >
       {children}
