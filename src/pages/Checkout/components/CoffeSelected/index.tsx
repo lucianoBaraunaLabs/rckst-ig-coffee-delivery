@@ -13,10 +13,6 @@ export function CoffeSelected() {
   const totalDelivery = helperFormatCurrencyBRL(infoCart.total + deliverValue)
   const navigate = useNavigate()
 
-  function handleToSuccess() {
-    // navigate('/success')
-  }
-
   function handleToHome() {
     navigate('/')
   }
@@ -62,9 +58,7 @@ export function CoffeSelected() {
           </li>
         </S.CheckoutListTotal>
         {hasCartItems ? (
-          <S.ButtonConfirm onSubmit={handleToSuccess}>
-            CONFIRMAR PEDIDO{' '}
-          </S.ButtonConfirm>
+          <S.ButtonConfirm type="submit">CONFIRMAR PEDIDO</S.ButtonConfirm>
         ) : (
           <S.ButtonConfirm onClick={handleToHome}>
             ESCOLHER CAFÉS

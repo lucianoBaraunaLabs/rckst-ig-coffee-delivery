@@ -4,6 +4,9 @@ import { zodResolver } from '@hookform/resolvers/zod'
 import { DeliveryForm } from '~/pages/Checkout/components/DeliveryForm'
 import { CoffeSelected } from '~/pages/Checkout/components/CoffeSelected'
 import * as S from './styles'
+import { useNavigate } from 'react-router-dom'
+import { useContext } from 'react'
+import { CoffeeContext } from '~/contexts/CoffeeContext'
 
 const regexCep = /\d{8}/
 const regexAddressNumber = /\d/
@@ -29,9 +32,11 @@ const deliveryFormValidationSchema = zod.object({
   }),
 })
 
-type DeliveryFormData = zod.infer<typeof deliveryFormValidationSchema>
+export type DeliveryFormData = zod.infer<typeof deliveryFormValidationSchema>
 
 export function Checkout() {
+  const navigate = useNavigate()
+  const { confirmOrder } = useContext(CoffeeContext)
   const deliveryForm = useForm<DeliveryFormData>({
     resolver: zodResolver(deliveryFormValidationSchema),
     defaultValues: {
@@ -49,7 +54,8 @@ export function Checkout() {
   const { handleSubmit } = deliveryForm
 
   function handleDelivery(data: DeliveryFormData) {
-    console.log('enviou: ', data)
+    confirmOrder(data)
+    navigate('/success')
   }
 
   return (
