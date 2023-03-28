@@ -69,7 +69,7 @@ export function CoffeeContextProvider({
       neighborhood: '',
       city: '',
       state: '',
-      typePayment: '',
+      paymentType: '',
     },
   })
 

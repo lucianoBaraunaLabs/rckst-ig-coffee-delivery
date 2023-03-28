@@ -27,7 +27,7 @@ const deliveryFormValidationSchema = zod.object({
     .min(3, 'Bairro precisar ter 3 caracteres no mínimo.'),
   city: zod.string().min(3, 'Cidade precisar ter 3 caracteres no mínimo.'),
   state: zod.string().min(1, 'O Estado é obrigatório.').max(2),
-  typePayment: zod.string().startsWith('payment', {
+  paymentType: zod.string().startsWith('payment', {
     message: 'Escolha uma forma de pagamento.',
   }),
 })
@@ -47,7 +47,7 @@ export function Checkout() {
       neighborhood: '',
       city: '',
       state: '',
-      typePayment: '',
+      paymentType: '',
     },
   })
 

@@ -29,7 +29,7 @@ export function Success() {
   const theme = useTheme()
   const { order } = useContext(CoffeeContext)
   const { deliveryTime, deliveryTo } = order
-  const textPayment = orderPayment[deliveryTo.typePayment as Payment]
+  const textPayment = orderPayment[deliveryTo.paymentType as Payment]
   const navigate = useNavigate()
   const orderIsEmpty = Object.values(order.deliveryTo).every(
     (value) => value === '',

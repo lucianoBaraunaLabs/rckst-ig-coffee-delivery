@@ -131,13 +131,13 @@ export function DeliveryForm() {
           {hasError && (
             <ErrorForm errors={errors} listFields={['typePayment']} />
           )}
-          <S.CheckoutListTypePayment>
+          <S.CheckoutListPaymentType>
             <S.ButtonPaymentType>
               <input
                 type="radio"
                 id="creditCard"
                 value={'paymentCreditCard'}
-                {...register('typePayment', { required: true })}
+                {...register('paymentType', { required: true })}
               />
               <label htmlFor="creditCard">
                 <CreditCard color="#8641be" />
@@ -149,7 +149,7 @@ export function DeliveryForm() {
                 type="radio"
                 id="debitCard"
                 value={'paymentDebitCard'}
-                {...register('typePayment', { required: true })}
+                {...register('paymentType', { required: true })}
               />
               <label htmlFor="debitCard">
                 <Bank color="#8641be" />
@@ -162,14 +162,14 @@ export function DeliveryForm() {
                 type="radio"
                 id="money"
                 value={'paymentMoney'}
-                {...register('typePayment', { required: true })}
+                {...register('paymentType', { required: true })}
               />
               <label htmlFor="money">
                 <Money color="#8641be" />
                 DINHEIRO
               </label>
             </S.ButtonPaymentType>
-          </S.CheckoutListTypePayment>
+          </S.CheckoutListPaymentType>
         </CardBox>
       </S.CheckoutCompleteOrderFilds>
     </section>

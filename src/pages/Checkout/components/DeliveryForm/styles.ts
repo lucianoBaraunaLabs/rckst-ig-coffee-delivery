@@ -64,7 +64,7 @@ export const ButtonPaymentType = styled.div`
   }
 `
 
-export const CheckoutListTypePayment = styled.div`
+export const CheckoutListPaymentType = styled.div`
   ${({ theme }) => css`
     gap: ${theme.spacing[3]};
 
