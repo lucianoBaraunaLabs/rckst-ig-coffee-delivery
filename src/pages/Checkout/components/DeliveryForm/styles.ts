@@ -156,7 +156,9 @@ export const CheckoutInput = styled.div<CheckoutInputProps>`
   }
 
   &:focus-within {
-    box-shadow: inset 0 0 0 1px red;
+    ${({ theme }) => css`
+      box-shadow: inset 0 0 0 1px ${theme.palette['yellow-900']};
+    `}
 
     label {
       visibility: hidden;

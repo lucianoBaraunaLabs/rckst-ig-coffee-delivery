@@ -119,8 +119,14 @@ export const ListTotalItem = styled.p<ListTotalItemProps>`
     `}
 `
 export const ButtonConfirm = styled(ButtonContainer)`
-  width: 100%;
-  font-size: ${({ theme }) => theme.fontSize[14]};
+  ${({ theme }) => css`
+    width: 100%;
+    font-size: ${theme.fontSize[14]};
+
+    &:disabled {
+      opacity: 0.6;
+    }
+  `}
 `
 export const Message = styled.h3`
   ${({ theme }) => css`

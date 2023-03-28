@@ -14,7 +14,7 @@ export function CoffeSelected() {
   const navigate = useNavigate()
 
   function handleToSuccess() {
-    navigate('/success')
+    // navigate('/success')
   }
 
   function handleToHome() {
@@ -62,7 +62,7 @@ export function CoffeSelected() {
           </li>
         </S.CheckoutListTotal>
         {hasCartItems ? (
-          <S.ButtonConfirm onClick={handleToSuccess}>
+          <S.ButtonConfirm onSubmit={handleToSuccess}>
             CONFIRMAR PEDIDO{' '}
           </S.ButtonConfirm>
         ) : (
