@@ -14,11 +14,11 @@ export function InputQuantity({
 }: InputQuantityProps) {
   return (
     <S.WrapIcrement>
-      <button onClick={onDecrement} disabled={quantity <= 1}>
+      <button type="button" onClick={onDecrement} disabled={quantity <= 1}>
         <Minus />
       </button>
       <input type="number" name="quantity" value={quantity} readOnly />
-      <button onClick={onIncrement}>
+      <button type="button" onClick={onIncrement}>
         <Plus />
       </button>
     </S.WrapIcrement>
