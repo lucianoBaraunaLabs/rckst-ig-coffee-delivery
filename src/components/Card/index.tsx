@@ -4,7 +4,8 @@ import * as S from './styles'
 
 import { InputQuantity } from '~/components/InputQuantity'
 
-import { Coffee, CoffeeContext, CoffeId } from '~/contexts/CoffeeContext'
+import { CoffeeContext } from '~/contexts/CoffeeContext'
+import { CoffeId, Coffee } from '~/reducers/coffee/reducer'
 
 interface CardProps extends S.CardPropStyles {
   coffee: Coffee
@@ -29,6 +30,7 @@ export function Card({ variation = 'card', coffee }: CardProps) {
 
   function handleAddProduct() {
     const product = { ...coffee, quantity: quantityProd }
+    console.log('Card handleAddProduct: ', product)
     addCoffee(product)
   }
 
@@ -37,12 +39,19 @@ export function Card({ variation = 'card', coffee }: CardProps) {
   }
 
   function handleChangeDecrement() {
-    setQuantityProd((state) => state - 1)
+    setQuantityProd((state) => {
+      console.log('handleChangeDecrement: ', state)
+      return state - 1
+    })
     handleAddProduct()
   }
 
   function handleChangeIncrement() {
-    setQuantityProd((state) => state + 1)
+    setQuantityProd((state) => {
+      console.log('handleChangeIncrement: ', state)
+
+      return state + 1
+    })
     handleAddProduct()
   }
 

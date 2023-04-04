@@ -13,6 +13,8 @@ export function CoffeSelected() {
   const totalDelivery = helperFormatCurrencyBRL(infoCart.total + deliverValue)
   const navigate = useNavigate()
 
+  console.log('CoffeSelected: ', cartItems)
+
   function handleToHome() {
     navigate('/')
   }

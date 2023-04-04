@@ -1,22 +1,16 @@
-import { createContext, ReactNode, useState } from 'react'
+import { createContext, ReactNode, useReducer } from 'react'
 import { DeliveryFormData } from '~/pages/Checkout'
-
-export type CoffeId = string
-
-export interface Coffee {
-  id: CoffeId
-  name: string
-  tags: string[]
-  description: string
-  price: number
-  img: string
-  quantity?: number
-}
-
-interface Order {
-  deliveryTo: DeliveryFormData
-  deliveryTime: string
-}
+import {
+  addCoffeeInCart,
+  removeCoffeeFromCart,
+  confirmCoffeOrder,
+} from '~/reducers/coffee/actions'
+import {
+  CoffeId,
+  Coffee,
+  coffeeReducer,
+  coffeInitialState,
+} from '~/reducers/coffee/reducer'
 
 interface CoffeeContextType {
   cartItems: Coffee[]
@@ -43,8 +37,11 @@ export const CoffeeContext = createContext({} as CoffeeContextType)
 export function CoffeeContextProvider({
   children,
 }: CoffeeContextProviderProps) {
-  const [cartItems, setCartItems] = useState<Coffee[]>([])
-  const infoCart = cartItems.reduce(
+  const [coffeState, dispatch] = useReducer(coffeeReducer, coffeInitialState)
+  const { coffees, order } = coffeState
+
+  // const [cartItems, setCartItems] = useState<Coffee[]>([])
+  const infoCart = coffees.reduce(
     (prev, curr) => {
       if (curr.quantity && curr.price) {
         return {
@@ -59,53 +56,58 @@ export function CoffeeContextProvider({
       total: 0,
     },
   )
-  const [order, setOrder] = useState<Order>({
-    deliveryTime: '20 min - 30 min',
-    deliveryTo: {
-      zipcode: '',
-      street: '',
-      addressNumber: '',
-      complement: '',
-      neighborhood: '',
-      city: '',
-      state: '',
-      paymentType: '',
-    },
-  })
+  // console.log('Context:', coffees)
+  // const [order, setOrder] = useState<Order>({
+  //   deliveryTime: '20 min - 30 min',
+  //   deliveryTo: {
+  //     zipcode: '',
+  //     street: '',
+  //     addressNumber: '',
+  //     complement: '',
+  //     neighborhood: '',
+  //     city: '',
+  //     state: '',
+  //     paymentType: '',
+  //   },
+  // })
 
   function addCoffee(coffee: Coffee) {
-    const alreadyInCart = cartItems.find((item) => item.id === coffee.id)
+    // const alreadyInCart = cartItems.find((item) => item.id === coffee.id)
 
-    if (!alreadyInCart) {
-      setCartItems((prev) => [...prev, coffee])
-    } else {
-      setCartItems((prev) => {
-        return prev.map((item) =>
-          item.id === coffee.id
-            ? { ...item, quantity: coffee.quantity }
-            : { ...item },
-        )
-      })
-    }
+    // if (!alreadyInCart) {
+    //   setCartItems((prev) => [...prev, coffee])
+    // } else {
+    //   setCartItems((prev) => {
+    //     return prev.map((item) =>
+    //       item.id === coffee.id
+    //         ? { ...item, quantity: coffee.quantity }
+    //         : { ...item },
+    //     )
+    //   })
+    // }
+    console.log('addCoffee: ', coffee)
+    dispatch(addCoffeeInCart(coffee))
   }
 
   function removeCoffee(coffeId: CoffeId) {
-    setCartItems((prev) => prev.filter((cartItem) => cartItem.id !== coffeId))
+    // setCartItems((prev) => prev.filter((cartItem) => cartItem.id !== coffeId))
+    dispatch(removeCoffeeFromCart(coffeId))
   }
 
   function confirmOrder(data: DeliveryFormData) {
-    setOrder((prev) => {
-      return {
-        ...prev,
-        deliveryTo: data,
-      }
-    })
+    // setOrder((prev) => {
+    //   return {
+    //     ...prev,
+    //     deliveryTo: data,
+    //   }
+    // })
+    dispatch(confirmCoffeOrder(data))
   }
 
   return (
     <CoffeeContext.Provider
       value={{
-        cartItems,
+        cartItems: coffees,
         addCoffee,
         removeCoffee,
         confirmOrder,
