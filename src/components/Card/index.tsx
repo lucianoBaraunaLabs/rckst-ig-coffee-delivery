@@ -12,7 +12,7 @@ interface CardProps extends S.CardPropStyles {
 }
 
 export function Card({ variation = 'card', coffee }: CardProps) {
-  const { addCoffee, removeCoffee, changeCoffeeQuantity, cartItems } =
+  const { addCoffee, removeCoffee, changeCoffeeQuantity, cart } =
     useContext(CoffeeContext)
   const [quantityProd, setQuantityProd] = useState(coffee.quantity || 1)
   const isVariationCard = variation !== 'row'
@@ -24,12 +24,12 @@ export function Card({ variation = 'card', coffee }: CardProps) {
   const cartItemInCartQuantity = getCoffeItemCartQuantity()
 
   function getCoffeItemCartQuantity() {
-    const coffeeExistsInCart = cartItems.findIndex(
+    const coffeeExistsInCart = cart.items.findIndex(
       (cartItem) => cartItem.id === coffee.id,
     )
 
-    return cartItems[coffeeExistsInCart]?.quantity
-      ? cartItems[coffeeExistsInCart]?.quantity
+    return cart.items[coffeeExistsInCart]?.quantity
+      ? cart.items[coffeeExistsInCart]?.quantity
       : 1
   }
 

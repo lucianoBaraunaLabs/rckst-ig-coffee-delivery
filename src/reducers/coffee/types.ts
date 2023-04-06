@@ -15,6 +15,7 @@ export interface Coffee {
 export interface Order {
   deliveryTo: DeliveryFormData
   deliveryTime: string
+  deliverValue: number
 }
 
 export interface CoffeeState {

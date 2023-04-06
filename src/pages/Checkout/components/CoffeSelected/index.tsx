@@ -8,12 +8,12 @@ import { TitleSection } from '~/pages/Checkout/components/TitleSection'
 import { CardBox } from '~/pages/Checkout/components/CardBox'
 
 export function CoffeSelected() {
-  const { cartItems, infoCart, deliverValue } = useContext(CoffeeContext)
-  const hasCartItems = cartItems.length > 0
-  const totalDelivery = helperFormatCurrencyBRL(infoCart.total + deliverValue)
+  const { cart, order } = useContext(CoffeeContext)
+  const hasCartItems = cart.items.length > 0
+  const totalDelivery = helperFormatCurrencyBRL(
+    cart.priceTotal + order.deliverValue,
+  )
   const navigate = useNavigate()
-
-  console.log('CoffeSelected: ', cartItems)
 
   function handleToHome() {
     navigate('/')
@@ -30,7 +30,7 @@ export function CoffeSelected() {
 
         {hasCartItems && (
           <S.CheckoutListCard>
-            {cartItems.map((item, index) => (
+            {cart.items.map((item, index) => (
               <S.ListCardItem key={`checkout-listcard-${index}`}>
                 <Card
                   coffee={item}
@@ -45,12 +45,12 @@ export function CoffeSelected() {
         <S.CheckoutListTotal>
           <li>
             <S.ListTotalItem>
-              Total de itens <span>{infoCart.quantity}</span>
+              Total de itens <span>{cart.quantityOfItems}</span>
             </S.ListTotalItem>
           </li>
           <li>
             <S.ListTotalItem>
-              Entrega <span>{helperFormatCurrencyBRL(deliverValue)}</span>
+              Entrega <span>{helperFormatCurrencyBRL(order.deliverValue)}</span>
             </S.ListTotalItem>
           </li>
           <li>

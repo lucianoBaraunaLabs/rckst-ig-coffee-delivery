@@ -7,6 +7,7 @@ export const coffeInitialState = {
   coffees: [],
   order: {
     deliveryTime: '20 min - 30 min',
+    deliverValue: 3.9,
     deliveryTo: {
       zipcode: '',
       street: '',

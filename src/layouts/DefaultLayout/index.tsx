@@ -5,10 +5,10 @@ import { CoffeeContext } from '~/contexts/CoffeeContext'
 import * as S from './styles'
 
 export function DefaultLayout() {
-  const { infoCart } = useContext(CoffeeContext)
+  const { cart } = useContext(CoffeeContext)
   return (
     <S.LayoutContainer>
-      <Header quantityItensCart={infoCart.quantity} />
+      <Header quantityItensCart={cart.quantityOfItems} />
       <Outlet />
     </S.LayoutContainer>
   )

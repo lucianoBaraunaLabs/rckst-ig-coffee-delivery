@@ -9,11 +9,16 @@ import {
   coffeInitialState,
   CoffeId,
   Coffee,
+  Order,
   ChangeCoffeeItemQuantity,
 } from '~/reducers/coffee'
 
 interface CoffeeContextType {
-  cartItems: Coffee[]
+  cart: {
+    items: Coffee[]
+    quantityOfItems: number
+    priceTotal: number
+  }
   addCoffee: (coffee: Coffee) => void
   removeCoffee: (coffeeId: CoffeId) => void
   changeCoffeeQuantity: ({
@@ -21,15 +26,7 @@ interface CoffeeContextType {
     typeChange,
   }: ChangeCoffeeItemQuantity) => void
   confirmOrder: (data: DeliveryFormData) => void
-  infoCart: {
-    quantity: number
-    total: number
-  }
-  deliverValue: number
-  order: {
-    deliveryTime: string
-    deliveryTo: DeliveryFormData
-  }
+  order: Order
 }
 
 interface CoffeeContextProviderProps {
@@ -48,15 +45,15 @@ export function CoffeeContextProvider({
     (prev, curr) => {
       if (curr.quantity && curr.price) {
         return {
-          quantity: prev.quantity + curr.quantity,
-          total: curr.price * curr.quantity + prev.total,
+          quantityOfItems: prev.quantityOfItems + curr.quantity,
+          priceTotal: curr.price * curr.quantity + prev.priceTotal,
         }
       }
       return { ...prev }
     },
     {
-      quantity: 0,
-      total: 0,
+      quantityOfItems: 0,
+      priceTotal: 0,
     },
   )
 
@@ -82,13 +79,14 @@ export function CoffeeContextProvider({
   return (
     <CoffeeContext.Provider
       value={{
-        cartItems: coffees,
+        cart: {
+          items: coffees,
+          ...infoCart,
+        },
         addCoffee,
         removeCoffee,
         changeCoffeeQuantity,
         confirmOrder,
-        infoCart: { ...infoCart },
-        deliverValue: 3.9,
         order,
       }}
     >
