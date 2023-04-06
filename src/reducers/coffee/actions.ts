@@ -1,15 +1,16 @@
 import { DeliveryFormData } from '~/pages/Checkout'
-import { CoffeId, Coffee } from './reducer'
+import { CoffeId, ChangeCoffeeItemQuantity, AddCoffeeInCart } from './types'
 
 /* eslint-disable no-unused-vars */
 export enum ActionsTypes {
   ADD_COFFEE = 'ADD_COFFEE',
   REMOVE_COFFEE = 'REMOVE_COFFEE',
+  CHANGE_COFFEE_QUANTITY = 'CHANGE_COFFEE_QUANTITY',
   CONFIRM_COFFEE_ORDER = 'CONFIRM_COFFEE_ORDER',
 }
 /* eslint-enable no-unused-vars */
 
-export function addCoffeeInCart(coffee: Coffee) {
+export function addCoffeeInCartAction(coffee: AddCoffeeInCart) {
   return {
     type: ActionsTypes.ADD_COFFEE,
     payload: {
@@ -18,7 +19,7 @@ export function addCoffeeInCart(coffee: Coffee) {
   }
 }
 
-export function removeCoffeeFromCart(coffeId: CoffeId) {
+export function removeCoffeeFromCartAction(coffeId: CoffeId) {
   return {
     type: ActionsTypes.REMOVE_COFFEE,
     payload: {
@@ -27,7 +28,20 @@ export function removeCoffeeFromCart(coffeId: CoffeId) {
   }
 }
 
-export function confirmCoffeOrder(dataOrder: DeliveryFormData) {
+export function changeCoffeQuantityAction({
+  coffee,
+  typeChange,
+}: ChangeCoffeeItemQuantity) {
+  return {
+    type: ActionsTypes.CHANGE_COFFEE_QUANTITY,
+    payload: {
+      coffee,
+      typeChange,
+    },
+  }
+}
+
+export function confirmCoffeOrderAction(dataOrder: DeliveryFormData) {
   return {
     type: ActionsTypes.CONFIRM_COFFEE_ORDER,
     payload: {
