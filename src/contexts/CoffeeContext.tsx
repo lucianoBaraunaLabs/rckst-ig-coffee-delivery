@@ -1,21 +1,25 @@
 import { createContext, ReactNode, useReducer } from 'react'
 import { DeliveryFormData } from '~/pages/Checkout'
 import {
-  addCoffeeInCart,
-  removeCoffeeFromCart,
-  confirmCoffeOrder,
-} from '~/reducers/coffee/actions'
-import {
-  CoffeId,
-  Coffee,
+  addCoffeeInCartAction,
+  removeCoffeeFromCartAction,
+  confirmCoffeOrderAction,
+  changeCoffeQuantityAction,
   coffeeReducer,
   coffeInitialState,
-} from '~/reducers/coffee/reducer'
+  CoffeId,
+  Coffee,
+  ChangeCoffeeItemQuantity,
+} from '~/reducers/coffee'
 
 interface CoffeeContextType {
   cartItems: Coffee[]
   addCoffee: (coffee: Coffee) => void
   removeCoffee: (coffeeId: CoffeId) => void
+  changeCoffeeQuantity: ({
+    coffee,
+    typeChange,
+  }: ChangeCoffeeItemQuantity) => void
   confirmOrder: (data: DeliveryFormData) => void
   infoCart: {
     quantity: number
@@ -40,7 +44,6 @@ export function CoffeeContextProvider({
   const [coffeState, dispatch] = useReducer(coffeeReducer, coffeInitialState)
   const { coffees, order } = coffeState
 
-  // const [cartItems, setCartItems] = useState<Coffee[]>([])
   const infoCart = coffees.reduce(
     (prev, curr) => {
       if (curr.quantity && curr.price) {
@@ -56,52 +59,24 @@ export function CoffeeContextProvider({
       total: 0,
     },
   )
-  // console.log('Context:', coffees)
-  // const [order, setOrder] = useState<Order>({
-  //   deliveryTime: '20 min - 30 min',
-  //   deliveryTo: {
-  //     zipcode: '',
-  //     street: '',
-  //     addressNumber: '',
-  //     complement: '',
-  //     neighborhood: '',
-  //     city: '',
-  //     state: '',
-  //     paymentType: '',
-  //   },
-  // })
 
-  function addCoffee(coffee: Coffee) {
-    // const alreadyInCart = cartItems.find((item) => item.id === coffee.id)
-
-    // if (!alreadyInCart) {
-    //   setCartItems((prev) => [...prev, coffee])
-    // } else {
-    //   setCartItems((prev) => {
-    //     return prev.map((item) =>
-    //       item.id === coffee.id
-    //         ? { ...item, quantity: coffee.quantity }
-    //         : { ...item },
-    //     )
-    //   })
-    // }
-    console.log('addCoffee: ', coffee)
-    dispatch(addCoffeeInCart(coffee))
+  function addCoffee(coffeeItem: Coffee) {
+    dispatch(addCoffeeInCartAction(coffeeItem))
   }
 
   function removeCoffee(coffeId: CoffeId) {
-    // setCartItems((prev) => prev.filter((cartItem) => cartItem.id !== coffeId))
-    dispatch(removeCoffeeFromCart(coffeId))
+    dispatch(removeCoffeeFromCartAction(coffeId))
+  }
+
+  function changeCoffeeQuantity({
+    coffee,
+    typeChange,
+  }: ChangeCoffeeItemQuantity) {
+    dispatch(changeCoffeQuantityAction({ coffee, typeChange }))
   }
 
   function confirmOrder(data: DeliveryFormData) {
-    // setOrder((prev) => {
-    //   return {
-    //     ...prev,
-    //     deliveryTo: data,
-    //   }
-    // })
-    dispatch(confirmCoffeOrder(data))
+    dispatch(confirmCoffeOrderAction(data))
   }
 
   return (
@@ -110,6 +85,7 @@ export function CoffeeContextProvider({
         cartItems: coffees,
         addCoffee,
         removeCoffee,
+        changeCoffeeQuantity,
         confirmOrder,
         infoCart: { ...infoCart },
         deliverValue: 3.9,
