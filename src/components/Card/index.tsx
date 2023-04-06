@@ -5,14 +5,15 @@ import * as S from './styles'
 import { InputQuantity } from '~/components/InputQuantity'
 
 import { CoffeeContext } from '~/contexts/CoffeeContext'
-import { CoffeId, Coffee } from '~/reducers/coffee/reducer'
+import { CoffeId, Coffee, ChangeItemQuantity } from '~/reducers/coffee'
 
 interface CardProps extends S.CardPropStyles {
   coffee: Coffee
 }
 
 export function Card({ variation = 'card', coffee }: CardProps) {
-  const { addCoffee, removeCoffee } = useContext(CoffeeContext)
+  const { addCoffee, removeCoffee, changeCoffeeQuantity, cartItems } =
+    useContext(CoffeeContext)
   const [quantityProd, setQuantityProd] = useState(coffee.quantity || 1)
   const isVariationCard = variation !== 'row'
   const isVariationRow = variation === 'row'
@@ -20,39 +21,45 @@ export function Card({ variation = 'card', coffee }: CardProps) {
     minimumFractionDigits: 2,
   }).format(coffee.price)
 
-  function handleDecrement() {
-    setQuantityProd((state) => state - 1)
+  const cartItemInCartQuantity = getCoffeItemCartQuantity()
+
+  function getCoffeItemCartQuantity() {
+    const coffeeExistsInCart = cartItems.findIndex(
+      (cartItem) => cartItem.id === coffee.id,
+    )
+
+    return cartItems[coffeeExistsInCart]?.quantity
+      ? cartItems[coffeeExistsInCart]?.quantity
+      : 1
   }
 
-  function handleIncrement() {
-    setQuantityProd((state) => state + 1)
+  function handleChangeQuantity(typeChange: ChangeItemQuantity) {
+    if (typeChange === 'decrease') {
+      changeCoffeeQuantity({ coffee, typeChange: 'decrease' })
+    }
+    if (typeChange === 'increase') {
+      changeCoffeeQuantity({ coffee, typeChange: 'increase' })
+    }
+  }
+
+  function handleQuantity(typeChange: ChangeItemQuantity) {
+    if (typeChange === 'decrease') {
+      changeCoffeeQuantity({ coffee, typeChange: 'decrease' })
+      setQuantityProd((state) => state - 1)
+    }
+    if (typeChange === 'increase') {
+      changeCoffeeQuantity({ coffee, typeChange: 'increase' })
+      setQuantityProd((state) => state + 1)
+    }
   }
 
   function handleAddProduct() {
     const product = { ...coffee, quantity: quantityProd }
-    console.log('Card handleAddProduct: ', product)
     addCoffee(product)
   }
 
   function handleRemoveProduct(coffeeId: CoffeId) {
     removeCoffee(coffeeId)
-  }
-
-  function handleChangeDecrement() {
-    setQuantityProd((state) => {
-      console.log('handleChangeDecrement: ', state)
-      return state - 1
-    })
-    handleAddProduct()
-  }
-
-  function handleChangeIncrement() {
-    setQuantityProd((state) => {
-      console.log('handleChangeIncrement: ', state)
-
-      return state + 1
-    })
-    handleAddProduct()
   }
 
   return (
@@ -77,9 +84,9 @@ export function Card({ variation = 'card', coffee }: CardProps) {
         {isVariationRow && (
           <S.Controls>
             <InputQuantity
-              onDecrement={handleChangeDecrement}
-              onIncrement={handleChangeIncrement}
-              quantity={quantityProd}
+              onDecrement={() => handleChangeQuantity('decrease')}
+              onIncrement={() => handleChangeQuantity('increase')}
+              quantity={cartItemInCartQuantity}
             />
             <S.ButtonRemove
               variation="simple"
@@ -98,8 +105,8 @@ export function Card({ variation = 'card', coffee }: CardProps) {
         {isVariationCard && (
           <S.Controls as="div">
             <InputQuantity
-              onDecrement={handleDecrement}
-              onIncrement={handleIncrement}
+              onDecrement={() => handleQuantity('decrease')}
+              onIncrement={() => handleQuantity('increase')}
               quantity={quantityProd}
             />
             <S.ButtonCart
