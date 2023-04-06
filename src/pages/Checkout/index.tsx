@@ -51,9 +51,8 @@ export function Checkout() {
     },
   })
 
-  const { handleSubmit, watch } = deliveryForm
+  const { handleSubmit } = deliveryForm
 
-  console.log(watch())
   function handleDelivery(data: DeliveryFormData) {
     confirmOrder(data)
     navigate('/success')
