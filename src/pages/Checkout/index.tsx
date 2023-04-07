@@ -11,6 +11,14 @@ import { CoffeeContext } from '~/contexts/CoffeeContext'
 const regexCep = /\d{8}/
 const regexAddressNumber = /\d/
 
+/* eslint-disable no-unused-vars */
+enum PaymentsTypes {
+  creditCard = 'creditCard',
+  debitCard = 'debitCard',
+  money = 'money',
+}
+/* eslint-enable no-unused-vars */
+
 const deliveryFormValidationSchema = zod.object({
   zipcode: zod.string().regex(regexCep, {
     message: 'Cep inválido. O valor precisa ter 8 números.',
@@ -27,8 +35,12 @@ const deliveryFormValidationSchema = zod.object({
     .min(3, 'Bairro precisar ter 3 caracteres no mínimo.'),
   city: zod.string().min(3, 'Cidade precisar ter 3 caracteres no mínimo.'),
   uf: zod.string().min(1, 'O Estado é obrigatório.').max(2),
-  paymentType: zod.string({
-    invalid_type_error: 'Escolha uma forma de pagamento',
+  paymentType: zod.nativeEnum(PaymentsTypes, {
+    errorMap: () => {
+      return {
+        message: 'Informe o método de pagamento',
+      }
+    },
   }),
 })
 
@@ -47,7 +59,7 @@ export function Checkout() {
       neighborhood: '',
       city: '',
       uf: '',
-      paymentType: '',
+      paymentType: undefined,
     },
   })
 

@@ -29,6 +29,7 @@ export function DeliveryForm() {
   ]
 
   const hasError = Object.keys(errors).length > 0
+  const hasErrorPaymentType = errors.paymentType?.message as unknown as string
 
   return (
     <section>
@@ -128,8 +129,8 @@ export function DeliveryForm() {
               </p>
             </div>
           </S.CheckoutCardHeader>
-          {hasError && (
-            <ErrorForm errors={errors} listFields={['paymentType']} />
+          {hasErrorPaymentType && (
+            <p className="error-payment">{hasErrorPaymentType}</p>
           )}
           <S.CheckoutListPaymentType>
             <S.ButtonPaymentType>

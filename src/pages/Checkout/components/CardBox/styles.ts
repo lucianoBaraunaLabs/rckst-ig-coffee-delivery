@@ -17,6 +17,12 @@ export const Wrap = styled.section<WrapPropsStyle>`
     padding: ${theme.spacing[10]} ${theme.spacing[6]};
     background-color: ${theme.palette.card};
     border-radius: ${theme.borderRadius['1.5']};
+
+    .error-payment {
+      font-size: ${theme.fontSize[14]};
+      color: ${theme.palette['yellow-900']};
+      margin-bottom: ${theme.spacing[2]};
+    }
   `}
 
   ${(props) => props.borderVariation && BorderVariation[props.borderVariation]}
