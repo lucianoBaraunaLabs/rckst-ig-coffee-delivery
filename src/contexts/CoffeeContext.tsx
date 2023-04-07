@@ -5,6 +5,7 @@ import {
   removeCoffeeFromCartAction,
   confirmCoffeOrderAction,
   changeCoffeQuantityAction,
+  clearCartAction,
   coffeeReducer,
   coffeInitialState,
   CoffeId,
@@ -25,6 +26,7 @@ interface CoffeeContextType {
     coffee,
     typeChange,
   }: ChangeCoffeeItemQuantity) => void
+  clearCart: () => void
   confirmOrder: (data: DeliveryFormData) => void
   order: Order
 }
@@ -76,6 +78,10 @@ export function CoffeeContextProvider({
     dispatch(confirmCoffeOrderAction(data))
   }
 
+  function clearCart() {
+    dispatch(clearCartAction())
+  }
+
   return (
     <CoffeeContext.Provider
       value={{
@@ -83,11 +89,12 @@ export function CoffeeContextProvider({
           items: coffees,
           ...infoCart,
         },
+        order,
         addCoffee,
         removeCoffee,
         changeCoffeeQuantity,
         confirmOrder,
-        order,
+        clearCart,
       }}
     >
       {children}

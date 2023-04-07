@@ -7,6 +7,7 @@ export enum ActionsTypes {
   REMOVE_COFFEE = 'REMOVE_COFFEE',
   CHANGE_COFFEE_QUANTITY = 'CHANGE_COFFEE_QUANTITY',
   CONFIRM_COFFEE_ORDER = 'CONFIRM_COFFEE_ORDER',
+  CLEAR_CART = 'CLEAR_CART',
 }
 /* eslint-enable no-unused-vars */
 
@@ -38,6 +39,12 @@ export function changeCoffeQuantityAction({
       coffee,
       typeChange,
     },
+  }
+}
+
+export function clearCartAction() {
+  return {
+    type: ActionsTypes.CLEAR_CART,
   }
 }
 

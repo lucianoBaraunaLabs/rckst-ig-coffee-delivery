@@ -36,7 +36,7 @@ export type DeliveryFormData = zod.infer<typeof deliveryFormValidationSchema>
 
 export function Checkout() {
   const navigate = useNavigate()
-  const { confirmOrder } = useContext(CoffeeContext)
+  const { confirmOrder, clearCart } = useContext(CoffeeContext)
   const deliveryForm = useForm<DeliveryFormData>({
     resolver: zodResolver(deliveryFormValidationSchema),
     defaultValues: {
@@ -55,6 +55,7 @@ export function Checkout() {
 
   function handleDelivery(data: DeliveryFormData) {
     confirmOrder(data)
+    clearCart()
     navigate('/success')
   }
 

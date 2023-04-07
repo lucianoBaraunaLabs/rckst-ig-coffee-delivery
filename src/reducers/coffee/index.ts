@@ -4,6 +4,7 @@ import {
   changeCoffeQuantityAction,
   confirmCoffeOrderAction,
   removeCoffeeFromCartAction,
+  clearCartAction,
 } from './actions'
 import {
   AddCoffeeInCart,
@@ -32,4 +33,5 @@ export {
   changeCoffeQuantityAction,
   confirmCoffeOrderAction,
   removeCoffeeFromCartAction,
+  clearCartAction,
 }

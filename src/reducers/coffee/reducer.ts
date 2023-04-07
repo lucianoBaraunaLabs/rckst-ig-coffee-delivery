@@ -69,6 +69,12 @@ export function coffeeReducer(state: CoffeeState, action: any) {
       })
     }
 
+    case ActionsTypes.CLEAR_CART: {
+      return produce(state, (draft) => {
+        draft.coffees = []
+      })
+    }
+
     case ActionsTypes.CONFIRM_COFFEE_ORDER: {
       return produce(state, (draft) => {
         draft.order.deliveryTo = action.payload.dataOrder
