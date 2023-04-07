@@ -15,7 +15,8 @@ import {
 } from './styles'
 import { useContext, useEffect } from 'react'
 import { CoffeeContext } from '~/contexts/CoffeeContext'
-import { useNavigate } from 'react-router-dom'
+import { useLocation, useNavigate } from 'react-router-dom'
+import { DeliveryFormData } from '~/pages/Checkout'
 
 type Payment = 'creditCard' | 'debitCard' | 'money'
 
@@ -25,21 +26,25 @@ const orderPayment: Record<Payment, string> = {
   money: 'Pagamento em dinheiro',
 }
 
+interface LocationOrder {
+  state: DeliveryFormData
+}
+
 export function Success() {
   const theme = useTheme()
   const { order } = useContext(CoffeeContext)
   const { deliveryTime, deliveryTo } = order
   const textPayment = orderPayment[deliveryTo.paymentType as Payment]
   const navigate = useNavigate()
-  const orderIsEmpty = Object.values(order.deliveryTo).every(
-    (value) => value === '',
-  )
+  const { state } = useLocation() as unknown as LocationOrder
 
   useEffect(() => {
-    if (orderIsEmpty) {
+    if (!state) {
       navigate('/')
     }
-  }, [navigate, orderIsEmpty])
+  }, [navigate, state])
+
+  if (!state) return <></>
 
   return (
     <Container className="container">
@@ -58,11 +63,9 @@ export function Success() {
               <InfoContent as="address">
                 Entrega em{' '}
                 <strong>
-                  {deliveryTo.street}, {deliveryTo.addressNumber},{' '}
-                  {deliveryTo.complement}
+                  {state.street}, {state.addressNumber}, {state.complement}
                 </strong>
-                &nbsp; {deliveryTo.neighborhood} - {deliveryTo.city},{' '}
-                {deliveryTo.state}
+                &nbsp; {state.neighborhood} - {state.city}, {state.uf}
               </InfoContent>
             </Info>
             <Info>

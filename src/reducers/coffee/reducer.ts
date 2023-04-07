@@ -15,7 +15,7 @@ export const coffeInitialState = {
       complement: '',
       neighborhood: '',
       city: '',
-      state: '',
+      uf: '',
       paymentType: '',
     },
   },

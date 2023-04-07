@@ -109,11 +109,11 @@ export function DeliveryForm() {
             <S.CheckoutInput size="20%">
               <input
                 type="text"
-                id="state"
+                id="uf"
                 placeholder="Digite seu estado"
-                {...register('state', { required: true })}
+                {...register('uf', { required: true })}
               />
-              <label htmlFor="state">Estado</label>
+              <label htmlFor="uf">Estado</label>
             </S.CheckoutInput>
           </S.FormAddressDelivery>
         </CardBox>

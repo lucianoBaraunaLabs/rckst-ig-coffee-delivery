@@ -1,4 +1,4 @@
-import { createContext, ReactNode, useReducer } from 'react'
+import { createContext, ReactNode, useEffect, useReducer } from 'react'
 import { DeliveryFormData } from '~/pages/Checkout'
 import {
   addCoffeeInCartAction,
@@ -37,10 +37,24 @@ interface CoffeeContextProviderProps {
 
 export const CoffeeContext = createContext({} as CoffeeContextType)
 
+const keyProjectLocalStorage = '@coffee-shop:coffee-shop-state-1.0.0'
+
 export function CoffeeContextProvider({
   children,
 }: CoffeeContextProviderProps) {
-  const [coffeState, dispatch] = useReducer(coffeeReducer, coffeInitialState)
+  const [coffeState, dispatch] = useReducer(
+    coffeeReducer,
+    coffeInitialState,
+    () => {
+      const storedStateAsJSON = localStorage.getItem(keyProjectLocalStorage)
+
+      if (storedStateAsJSON) {
+        return JSON.parse(storedStateAsJSON)
+      }
+
+      return coffeInitialState
+    },
+  )
   const { coffees, order } = coffeState
 
   const infoCart = coffees.reduce(
@@ -58,6 +72,11 @@ export function CoffeeContextProvider({
       priceTotal: 0,
     },
   )
+
+  useEffect(() => {
+    const startJSON = JSON.stringify(coffeState)
+    localStorage.setItem(keyProjectLocalStorage, startJSON)
+  }, [coffeState])
 
   function addCoffee(coffeeItem: Coffee) {
     dispatch(addCoffeeInCartAction(coffeeItem))
